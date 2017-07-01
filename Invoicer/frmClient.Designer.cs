@@ -221,7 +221,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dCNODataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vendorCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tINNODataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orderNoDataGridViewTextBoxColumn;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn orderNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.ContextMenuStrip ctxtClient;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;

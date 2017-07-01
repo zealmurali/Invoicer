@@ -331,7 +331,7 @@
         private InvoicerDataSet invoicerDataSet;
         private System.Windows.Forms.BindingSource clientBindingSource;
         private InvoicerDataSetTableAdapters.ClientTableAdapter clientTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orderNoDataGridViewTextBoxColumn;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn orderNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource invoiceBindingSource;
         private InvoicerDataSetTableAdapters.InvoiceTableAdapter invoiceTableAdapter;
         internal System.Windows.Forms.DateTimePicker dtToDate;

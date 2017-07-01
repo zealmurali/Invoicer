@@ -194,6 +194,10 @@ namespace Invoicer
 
                 this.clientBindingSource.DataSource = objCustomer.GetDataForCombo();
 
+                InvoicerDataSetTableAdapters.ProductsTableAdapter objProduct = new InvoicerDataSetTableAdapters.ProductsTableAdapter();
+
+                this.productBindingSource.DataSource = objProduct.GetData();
+
                 InvoicerDataSetTableAdapters.InvoiceTableAdapter objInvoice = new InvoicerDataSetTableAdapters.InvoiceTableAdapter();
                 if (intInvoiceNo > 0)
                 {

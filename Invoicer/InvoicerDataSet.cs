@@ -1,7 +1,9 @@
-﻿namespace Invoicer {
-    
-    
-    public partial class InvoicerDataSet {
+﻿namespace Invoicer
+{
+
+
+    public partial class InvoicerDataSet
+    {
     }
 }
 

@@ -152,6 +152,7 @@
       <DependentUpon>InvoicerDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\DataSources\Invoicer.InvoicerDataSetTableAdapters.InvoiceTableAdapter.datasource" />
+    <None Include="Properties\DataSources\Invoicer.InvoicerDataSetTableAdapters.ProductsTableAdapter.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
