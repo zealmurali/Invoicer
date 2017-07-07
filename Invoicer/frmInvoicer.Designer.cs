@@ -69,9 +69,10 @@
             this.Label3 = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.dgInvoicer = new System.Windows.Forms.DataGridView();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.invoicerDataSet = new Invoicer.InvoicerDataSet();
             this.lineItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.invoicerDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.invoicerDataSet = new Invoicer.InvoicerDataSet();
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -95,23 +96,22 @@
             this.clientListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productsTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ProductsTableAdapter();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.invoiceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Panel2.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoicer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lineItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).BeginInit();
             this.GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
             this.TableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Panel2
@@ -552,6 +552,16 @@
             this.dgInvoicer.Size = new System.Drawing.Size(857, 207);
             this.dgInvoicer.TabIndex = 4;
             // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataMember = "Products";
+            this.productBindingSource.DataSource = this.invoicerDataSet;
+            // 
+            // invoicerDataSet
+            // 
+            this.invoicerDataSet.DataSetName = "InvoicerDataSet";
+            this.invoicerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // lineItemBindingSource
             // 
             this.lineItemBindingSource.DataMember = "LineItem";
@@ -561,11 +571,6 @@
             // 
             this.invoicerDataSetBindingSource.DataSource = this.invoicerDataSet;
             this.invoicerDataSetBindingSource.Position = 0;
-            // 
-            // invoicerDataSet
-            // 
-            this.invoicerDataSet.DataSetName = "InvoicerDataSet";
-            this.invoicerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // GroupBox2
             // 
@@ -787,11 +792,6 @@
             // 
             this.productsTableAdapter.ClearBeforeFill = true;
             // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataMember = "Products";
-            this.productBindingSource.DataSource = this.invoicerDataSet;
-            // 
             // invoiceIDDataGridViewTextBoxColumn
             // 
             this.invoiceIDDataGridViewTextBoxColumn.DataPropertyName = "InvoiceID";
@@ -810,14 +810,10 @@
             // Product
             // 
             this.Product.DataPropertyName = "Product";
-            this.Product.DataSource = this.productBindingSource;
-            this.Product.DisplayMember = "Product";
             this.Product.FillWeight = 40F;
             this.Product.HeaderText = "PARTICULARS";
             this.Product.Name = "Product";
             this.Product.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Product.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Product.ValueMember = "Product";
             // 
             // Quantity
             // 
@@ -851,16 +847,16 @@
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoicer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lineItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).EndInit();
             this.GroupBox2.ResumeLayout(false);
             this.GroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
             this.TableLayoutPanel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -937,7 +933,7 @@
         private System.Windows.Forms.BindingSource productBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn invoiceIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Product;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Product;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
     }
