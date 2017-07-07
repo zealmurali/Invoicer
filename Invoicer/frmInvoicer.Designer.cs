@@ -69,10 +69,14 @@
             this.Label3 = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.dgInvoicer = new System.Windows.Forms.DataGridView();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.invoicerDataSet = new Invoicer.InvoicerDataSet();
+            this.invoiceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lineItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.invoicerDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.invoicerDataSet = new Invoicer.InvoicerDataSet();
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -87,6 +91,7 @@
             this.CityLabel = new System.Windows.Forms.Label();
             this.StateLabel = new System.Windows.Forms.Label();
             this.StateTextBox = new System.Windows.Forms.TextBox();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lineItemTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.LineItemTableAdapter();
             this.clientTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ClientTableAdapter();
@@ -96,26 +101,37 @@
             this.clientListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productsTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ProductsTableAdapter();
-            this.invoiceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.Panel2.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoicer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lineItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).BeginInit();
             this.GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.TableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel2
             // 
+            this.Panel2.Controls.Add(this.textBox5);
+            this.Panel2.Controls.Add(this.label21);
+            this.Panel2.Controls.Add(this.textBox4);
+            this.Panel2.Controls.Add(this.label20);
+            this.Panel2.Controls.Add(this.textBox3);
+            this.Panel2.Controls.Add(this.label19);
             this.Panel2.Controls.Add(this.txtFrieght);
             this.Panel2.Controls.Add(this.Label16);
             this.Panel2.Controls.Add(this.radOldAddr);
@@ -167,7 +183,7 @@
             this.Label16.Name = "Label16";
             this.Label16.Size = new System.Drawing.Size(84, 13);
             this.Label16.TabIndex = 46;
-            this.Label16.Text = "Freight";
+            this.Label16.Text = "IGST(%)";
             // 
             // radOldAddr
             // 
@@ -213,7 +229,7 @@
             this.Label15.Name = "Label15";
             this.Label15.Size = new System.Drawing.Size(84, 13);
             this.Label15.TabIndex = 42;
-            this.Label15.Text = "CST (%)";
+            this.Label15.Text = "SGST (%)";
             // 
             // txtDiscount
             // 
@@ -324,7 +340,7 @@
             this.Label12.Name = "Label12";
             this.Label12.Size = new System.Drawing.Size(84, 13);
             this.Label12.TabIndex = 31;
-            this.Label12.Text = "VAT(%)";
+            this.Label12.Text = "CGST(%)";
             // 
             // txtTotalDiscount
             // 
@@ -396,6 +412,10 @@
             // 
             // GroupBox1
             // 
+            this.GroupBox1.Controls.Add(this.textBox2);
+            this.GroupBox1.Controls.Add(this.label18);
+            this.GroupBox1.Controls.Add(this.textBox1);
+            this.GroupBox1.Controls.Add(this.label17);
             this.GroupBox1.Controls.Add(this.txtTINNo);
             this.GroupBox1.Controls.Add(this.Label14);
             this.GroupBox1.Controls.Add(this.dtDCDate);
@@ -416,7 +436,7 @@
             // 
             // txtTINNo
             // 
-            this.txtTINNo.Location = new System.Drawing.Point(103, 93);
+            this.txtTINNo.Location = new System.Drawing.Point(103, 83);
             this.txtTINNo.Name = "txtTINNo";
             this.txtTINNo.Size = new System.Drawing.Size(316, 20);
             this.txtTINNo.TabIndex = 5;
@@ -425,7 +445,7 @@
             // 
             this.Label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label14.ForeColor = System.Drawing.Color.DimGray;
-            this.Label14.Location = new System.Drawing.Point(2, 96);
+            this.Label14.Location = new System.Drawing.Point(2, 86);
             this.Label14.Name = "Label14";
             this.Label14.Size = new System.Drawing.Size(101, 13);
             this.Label14.TabIndex = 10;
@@ -435,7 +455,7 @@
             // 
             this.dtDCDate.CustomFormat = "dd/MM/yyyy";
             this.dtDCDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDCDate.Location = new System.Drawing.Point(285, 45);
+            this.dtDCDate.Location = new System.Drawing.Point(285, 37);
             this.dtDCDate.Name = "dtDCDate";
             this.dtDCDate.Size = new System.Drawing.Size(134, 20);
             this.dtDCDate.TabIndex = 3;
@@ -444,7 +464,7 @@
             // 
             this.dtInvoiceDate.CustomFormat = "dd/MM/yyyy";
             this.dtInvoiceDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtInvoiceDate.Location = new System.Drawing.Point(285, 18);
+            this.dtInvoiceDate.Location = new System.Drawing.Point(285, 13);
             this.dtInvoiceDate.Name = "dtInvoiceDate";
             this.dtInvoiceDate.Size = new System.Drawing.Size(134, 20);
             this.dtInvoiceDate.TabIndex = 1;
@@ -453,7 +473,7 @@
             // 
             this.Label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label6.ForeColor = System.Drawing.Color.DimGray;
-            this.Label6.Location = new System.Drawing.Point(243, 21);
+            this.Label6.Location = new System.Drawing.Point(243, 16);
             this.Label6.Name = "Label6";
             this.Label6.Size = new System.Drawing.Size(52, 13);
             this.Label6.TabIndex = 2;
@@ -463,7 +483,7 @@
             // 
             this.Label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label5.ForeColor = System.Drawing.Color.DimGray;
-            this.Label5.Location = new System.Drawing.Point(243, 49);
+            this.Label5.Location = new System.Drawing.Point(243, 41);
             this.Label5.Name = "Label5";
             this.Label5.Size = new System.Drawing.Size(52, 13);
             this.Label5.TabIndex = 6;
@@ -471,21 +491,21 @@
             // 
             // txtVendorCode
             // 
-            this.txtVendorCode.Location = new System.Drawing.Point(103, 70);
+            this.txtVendorCode.Location = new System.Drawing.Point(103, 60);
             this.txtVendorCode.Name = "txtVendorCode";
             this.txtVendorCode.Size = new System.Drawing.Size(316, 20);
             this.txtVendorCode.TabIndex = 4;
             // 
             // txtDCNo
             // 
-            this.txtDCNo.Location = new System.Drawing.Point(103, 44);
+            this.txtDCNo.Location = new System.Drawing.Point(103, 36);
             this.txtDCNo.Name = "txtDCNo";
             this.txtDCNo.Size = new System.Drawing.Size(134, 20);
             this.txtDCNo.TabIndex = 2;
             // 
             // txtInvoiceNo
             // 
-            this.txtInvoiceNo.Location = new System.Drawing.Point(103, 18);
+            this.txtInvoiceNo.Location = new System.Drawing.Point(103, 13);
             this.txtInvoiceNo.Name = "txtInvoiceNo";
             this.txtInvoiceNo.ReadOnly = true;
             this.txtInvoiceNo.Size = new System.Drawing.Size(134, 20);
@@ -495,7 +515,7 @@
             // 
             this.Label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label4.ForeColor = System.Drawing.Color.DimGray;
-            this.Label4.Location = new System.Drawing.Point(2, 73);
+            this.Label4.Location = new System.Drawing.Point(2, 63);
             this.Label4.Name = "Label4";
             this.Label4.Size = new System.Drawing.Size(101, 13);
             this.Label4.TabIndex = 8;
@@ -505,7 +525,7 @@
             // 
             this.lblDCNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDCNo.ForeColor = System.Drawing.Color.DimGray;
-            this.lblDCNo.Location = new System.Drawing.Point(4, 47);
+            this.lblDCNo.Location = new System.Drawing.Point(4, 39);
             this.lblDCNo.Name = "lblDCNo";
             this.lblDCNo.Size = new System.Drawing.Size(90, 13);
             this.lblDCNo.TabIndex = 4;
@@ -515,7 +535,7 @@
             // 
             this.Label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label3.ForeColor = System.Drawing.Color.DimGray;
-            this.Label3.Location = new System.Drawing.Point(3, 21);
+            this.Label3.Location = new System.Drawing.Point(3, 16);
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(90, 13);
             this.Label3.TabIndex = 0;
@@ -552,15 +572,42 @@
             this.dgInvoicer.Size = new System.Drawing.Size(857, 207);
             this.dgInvoicer.TabIndex = 4;
             // 
-            // productBindingSource
+            // invoiceIDDataGridViewTextBoxColumn
             // 
-            this.productBindingSource.DataMember = "Products";
-            this.productBindingSource.DataSource = this.invoicerDataSet;
+            this.invoiceIDDataGridViewTextBoxColumn.DataPropertyName = "InvoiceID";
+            this.invoiceIDDataGridViewTextBoxColumn.FillWeight = 1F;
+            this.invoiceIDDataGridViewTextBoxColumn.HeaderText = "InvoiceID";
+            this.invoiceIDDataGridViewTextBoxColumn.Name = "invoiceIDDataGridViewTextBoxColumn";
+            this.invoiceIDDataGridViewTextBoxColumn.Visible = false;
             // 
-            // invoicerDataSet
+            // SNo
             // 
-            this.invoicerDataSet.DataSetName = "InvoicerDataSet";
-            this.invoicerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.SNo.DataPropertyName = "SNo";
+            this.SNo.FillWeight = 3F;
+            this.SNo.HeaderText = "S.No";
+            this.SNo.Name = "SNo";
+            // 
+            // Product
+            // 
+            this.Product.DataPropertyName = "Product";
+            this.Product.FillWeight = 40F;
+            this.Product.HeaderText = "PARTICULARS";
+            this.Product.Name = "Product";
+            this.Product.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.FillWeight = 7.614212F;
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            // 
+            // UnitPrice
+            // 
+            this.UnitPrice.DataPropertyName = "UnitPrice";
+            this.UnitPrice.FillWeight = 7.614212F;
+            this.UnitPrice.HeaderText = "Rate";
+            this.UnitPrice.Name = "UnitPrice";
             // 
             // lineItemBindingSource
             // 
@@ -571,6 +618,11 @@
             // 
             this.invoicerDataSetBindingSource.DataSource = this.invoicerDataSet;
             this.invoicerDataSetBindingSource.Position = 0;
+            // 
+            // invoicerDataSet
+            // 
+            this.invoicerDataSet.DataSetName = "InvoicerDataSet";
+            this.invoicerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // GroupBox2
             // 
@@ -723,6 +775,11 @@
             this.StateTextBox.Size = new System.Drawing.Size(61, 20);
             this.StateTextBox.TabIndex = 6;
             // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataMember = "Products";
+            this.productBindingSource.DataSource = this.invoicerDataSet;
+            // 
             // TableLayoutPanel1
             // 
             this.TableLayoutPanel1.ColumnCount = 1;
@@ -792,42 +849,93 @@
             // 
             this.productsTableAdapter.ClearBeforeFill = true;
             // 
-            // invoiceIDDataGridViewTextBoxColumn
+            // textBox1
             // 
-            this.invoiceIDDataGridViewTextBoxColumn.DataPropertyName = "InvoiceID";
-            this.invoiceIDDataGridViewTextBoxColumn.FillWeight = 1F;
-            this.invoiceIDDataGridViewTextBoxColumn.HeaderText = "InvoiceID";
-            this.invoiceIDDataGridViewTextBoxColumn.Name = "invoiceIDDataGridViewTextBoxColumn";
-            this.invoiceIDDataGridViewTextBoxColumn.Visible = false;
+            this.textBox1.Location = new System.Drawing.Point(103, 107);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(134, 20);
+            this.textBox1.TabIndex = 11;
             // 
-            // SNo
+            // label17
             // 
-            this.SNo.DataPropertyName = "SNo";
-            this.SNo.FillWeight = 3F;
-            this.SNo.HeaderText = "S.No";
-            this.SNo.Name = "SNo";
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.DimGray;
+            this.label17.Location = new System.Drawing.Point(4, 110);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(90, 13);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "GSTIN:";
             // 
-            // Product
+            // textBox2
             // 
-            this.Product.DataPropertyName = "Product";
-            this.Product.FillWeight = 40F;
-            this.Product.HeaderText = "PARTICULARS";
-            this.Product.Name = "Product";
-            this.Product.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.textBox2.Location = new System.Drawing.Point(345, 107);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(75, 20);
+            this.textBox2.TabIndex = 13;
             // 
-            // Quantity
+            // label18
             // 
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.FillWeight = 7.614212F;
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.DimGray;
+            this.label18.Location = new System.Drawing.Point(246, 110);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(93, 13);
+            this.label18.TabIndex = 14;
+            this.label18.Text = "State Code:";
             // 
-            // UnitPrice
+            // textBox3
             // 
-            this.UnitPrice.DataPropertyName = "UnitPrice";
-            this.UnitPrice.FillWeight = 7.614212F;
-            this.UnitPrice.HeaderText = "Rate";
-            this.UnitPrice.Name = "UnitPrice";
+            this.textBox3.Location = new System.Drawing.Point(60, 407);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(134, 20);
+            this.textBox3.TabIndex = 47;
+            this.textBox3.Text = "33AJKPB8845K1ZY";
+            // 
+            // label19
+            // 
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.DimGray;
+            this.label19.Location = new System.Drawing.Point(8, 410);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(56, 13);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "GSTIN:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(86, 431);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(108, 20);
+            this.textBox4.TabIndex = 49;
+            this.textBox4.Text = "33";
+            // 
+            // label20
+            // 
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.DimGray;
+            this.label20.Location = new System.Drawing.Point(8, 434);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(79, 13);
+            this.label20.TabIndex = 50;
+            this.label20.Text = "State Code:";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(85, 455);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(108, 20);
+            this.textBox5.TabIndex = 51;
+            this.textBox5.Text = "84511010";
+            // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.DimGray;
+            this.label21.Location = new System.Drawing.Point(7, 458);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(80, 13);
+            this.label21.TabIndex = 52;
+            this.label21.Text = "HSN Code:";
             // 
             // frmInvoicer
             // 
@@ -847,13 +955,13 @@
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoicer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lineItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).EndInit();
             this.GroupBox2.ResumeLayout(false);
             this.GroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.TableLayoutPanel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -936,5 +1044,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Product;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
+        internal System.Windows.Forms.TextBox textBox2;
+        internal System.Windows.Forms.Label label18;
+        internal System.Windows.Forms.TextBox textBox1;
+        internal System.Windows.Forms.Label label17;
+        internal System.Windows.Forms.TextBox textBox4;
+        internal System.Windows.Forms.Label label20;
+        internal System.Windows.Forms.TextBox textBox3;
+        internal System.Windows.Forms.Label label19;
+        internal System.Windows.Forms.TextBox textBox5;
+        internal System.Windows.Forms.Label label21;
     }
 }
