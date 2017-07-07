@@ -34,6 +34,8 @@ namespace Invoicer
 
                     // txtRefNo.Text = dtClient.Rows[0]["OrderNo"].ToString();
                     txtDCNo.Text = dtClient.Rows[0]["DCNO"].ToString();
+                    txtGSTIN.Text = dtClient.Rows[0]["GSTIN"].ToString();
+                    txtStateCode.Text = dtClient.Rows[0]["StateCode"].ToString();
                 }
             }
             catch (Exception excLocal)
@@ -93,13 +95,15 @@ namespace Invoicer
                 //string OrderNo = this.txtRefNo.Text != "" ? txtRefNo.Text : null;
                 string DCNO = this.txtDCNo.Text != "" ? txtDCNo.Text : null;
                 string VendorCode = this.txtVendorCode.Text != "" ? txtVendorCode.Text : null;
+                string GSTIN = this.txtGSTIN.Text != "" ? this.txtGSTIN.Text : null;
+                string StateCode = this.txtStateCode.Text != "" ? this.txtStateCode.Text : null;
                 if (txtClientID.Text == "")
                 {
-                    objClient.Insert(ClientName, Address, City, State, Zip, DCNO, VendorCode, TINNO);
+                    objClient.Insert(ClientName, Address, City, State, Zip, DCNO, VendorCode, TINNO, GSTIN, StateCode);
                 }
                 else
                 {
-                    objClient.UpdateClient(ClientName, Address, City, State, Zip, DCNO, VendorCode, TINNO, Convert.ToInt32(txtClientID.Text.ToString()));
+                    objClient.UpdateClient(ClientName, Address, City, State, Zip, DCNO, VendorCode, TINNO, GSTIN, StateCode, Convert.ToInt32(txtClientID.Text.ToString()));
                 }
                 return true;
             }

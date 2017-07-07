@@ -30,11 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             this.Panel2 = new System.Windows.Forms.Panel();
-            this.txtFrieght = new System.Windows.Forms.TextBox();
+            this.txtHSNCode = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtStateCode = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtGSTIN = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtIGST = new System.Windows.Forms.TextBox();
             this.Label16 = new System.Windows.Forms.Label();
             this.radOldAddr = new System.Windows.Forms.RadioButton();
             this.radNewAddr = new System.Windows.Forms.RadioButton();
-            this.txtCST = new System.Windows.Forms.TextBox();
+            this.txtSGST = new System.Windows.Forms.TextBox();
             this.Label15 = new System.Windows.Forms.Label();
             this.txtDiscount = new System.Windows.Forms.TextBox();
             this.Label13 = new System.Windows.Forms.Label();
@@ -45,7 +51,7 @@
             this.Label9 = new System.Windows.Forms.Label();
             this.txtLineAmount = new System.Windows.Forms.TextBox();
             this.Label8 = new System.Windows.Forms.Label();
-            this.txtVAT = new System.Windows.Forms.TextBox();
+            this.txtCGST = new System.Windows.Forms.TextBox();
             this.Label12 = new System.Windows.Forms.Label();
             this.txtTotalDiscount = new System.Windows.Forms.TextBox();
             this.Label11 = new System.Windows.Forms.Label();
@@ -55,6 +61,10 @@
             this.txtRefNo = new System.Windows.Forms.TextBox();
             this.Label2 = new System.Windows.Forms.Label();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCStateCode = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtCGSTIN = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.txtTINNo = new System.Windows.Forms.TextBox();
             this.Label14 = new System.Windows.Forms.Label();
             this.dtDCDate = new System.Windows.Forms.DateTimePicker();
@@ -101,16 +111,6 @@
             this.clientListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productsTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ProductsTableAdapter();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
             this.Panel2.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoicer)).BeginInit();
@@ -126,17 +126,17 @@
             // 
             // Panel2
             // 
-            this.Panel2.Controls.Add(this.textBox5);
+            this.Panel2.Controls.Add(this.txtHSNCode);
             this.Panel2.Controls.Add(this.label21);
-            this.Panel2.Controls.Add(this.textBox4);
+            this.Panel2.Controls.Add(this.txtStateCode);
             this.Panel2.Controls.Add(this.label20);
-            this.Panel2.Controls.Add(this.textBox3);
+            this.Panel2.Controls.Add(this.txtGSTIN);
             this.Panel2.Controls.Add(this.label19);
-            this.Panel2.Controls.Add(this.txtFrieght);
+            this.Panel2.Controls.Add(this.txtIGST);
             this.Panel2.Controls.Add(this.Label16);
             this.Panel2.Controls.Add(this.radOldAddr);
             this.Panel2.Controls.Add(this.radNewAddr);
-            this.Panel2.Controls.Add(this.txtCST);
+            this.Panel2.Controls.Add(this.txtSGST);
             this.Panel2.Controls.Add(this.Label15);
             this.Panel2.Controls.Add(this.txtDiscount);
             this.Panel2.Controls.Add(this.Label13);
@@ -147,7 +147,7 @@
             this.Panel2.Controls.Add(this.Label9);
             this.Panel2.Controls.Add(this.txtLineAmount);
             this.Panel2.Controls.Add(this.Label8);
-            this.Panel2.Controls.Add(this.txtVAT);
+            this.Panel2.Controls.Add(this.txtCGST);
             this.Panel2.Controls.Add(this.Label12);
             this.Panel2.Controls.Add(this.txtTotalDiscount);
             this.Panel2.Controls.Add(this.Label11);
@@ -165,15 +165,69 @@
             this.Panel2.Size = new System.Drawing.Size(875, 534);
             this.Panel2.TabIndex = 2;
             // 
-            // txtFrieght
+            // txtHSNCode
             // 
-            this.txtFrieght.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFrieght.Location = new System.Drawing.Point(439, 476);
-            this.txtFrieght.Name = "txtFrieght";
-            this.txtFrieght.Size = new System.Drawing.Size(141, 20);
-            this.txtFrieght.TabIndex = 8;
-            this.txtFrieght.Text = "0";
-            this.txtFrieght.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHSNCode.Location = new System.Drawing.Point(85, 455);
+            this.txtHSNCode.Name = "txtHSNCode";
+            this.txtHSNCode.Size = new System.Drawing.Size(108, 20);
+            this.txtHSNCode.TabIndex = 51;
+            this.txtHSNCode.Text = "84511010";
+            // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.DimGray;
+            this.label21.Location = new System.Drawing.Point(7, 458);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(80, 13);
+            this.label21.TabIndex = 52;
+            this.label21.Text = "HSN Code:";
+            // 
+            // txtStateCode
+            // 
+            this.txtStateCode.Location = new System.Drawing.Point(86, 431);
+            this.txtStateCode.Name = "txtStateCode";
+            this.txtStateCode.Size = new System.Drawing.Size(108, 20);
+            this.txtStateCode.TabIndex = 49;
+            this.txtStateCode.Text = "33";
+            // 
+            // label20
+            // 
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.DimGray;
+            this.label20.Location = new System.Drawing.Point(8, 434);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(79, 13);
+            this.label20.TabIndex = 50;
+            this.label20.Text = "State Code:";
+            // 
+            // txtGSTIN
+            // 
+            this.txtGSTIN.Location = new System.Drawing.Point(60, 407);
+            this.txtGSTIN.Name = "txtGSTIN";
+            this.txtGSTIN.Size = new System.Drawing.Size(134, 20);
+            this.txtGSTIN.TabIndex = 47;
+            this.txtGSTIN.Text = "33AJKPB8845K1ZY";
+            // 
+            // label19
+            // 
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.DimGray;
+            this.label19.Location = new System.Drawing.Point(8, 410);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(56, 13);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "GSTIN:";
+            // 
+            // txtIGST
+            // 
+            this.txtIGST.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIGST.Location = new System.Drawing.Point(439, 476);
+            this.txtIGST.Name = "txtIGST";
+            this.txtIGST.Size = new System.Drawing.Size(141, 20);
+            this.txtIGST.TabIndex = 8;
+            this.txtIGST.Text = "0";
+            this.txtIGST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Label16
             // 
@@ -211,15 +265,15 @@
             this.radNewAddr.Text = "New Address";
             this.radNewAddr.UseVisualStyleBackColor = true;
             // 
-            // txtCST
+            // txtSGST
             // 
-            this.txtCST.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCST.Location = new System.Drawing.Point(439, 451);
-            this.txtCST.Name = "txtCST";
-            this.txtCST.Size = new System.Drawing.Size(141, 20);
-            this.txtCST.TabIndex = 7;
-            this.txtCST.Text = "0";
-            this.txtCST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSGST.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSGST.Location = new System.Drawing.Point(439, 451);
+            this.txtSGST.Name = "txtSGST";
+            this.txtSGST.Size = new System.Drawing.Size(141, 20);
+            this.txtSGST.TabIndex = 7;
+            this.txtSGST.Text = "0";
+            this.txtSGST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Label15
             // 
@@ -322,15 +376,15 @@
             this.Label8.TabIndex = 34;
             this.Label8.Text = "Total Line Amount";
             // 
-            // txtVAT
+            // txtCGST
             // 
-            this.txtVAT.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVAT.Location = new System.Drawing.Point(439, 427);
-            this.txtVAT.Name = "txtVAT";
-            this.txtVAT.Size = new System.Drawing.Size(141, 20);
-            this.txtVAT.TabIndex = 6;
-            this.txtVAT.Text = "0";
-            this.txtVAT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCGST.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCGST.Location = new System.Drawing.Point(439, 427);
+            this.txtCGST.Name = "txtCGST";
+            this.txtCGST.Size = new System.Drawing.Size(141, 20);
+            this.txtCGST.TabIndex = 6;
+            this.txtCGST.Text = "0";
+            this.txtCGST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Label12
             // 
@@ -412,9 +466,9 @@
             // 
             // GroupBox1
             // 
-            this.GroupBox1.Controls.Add(this.textBox2);
+            this.GroupBox1.Controls.Add(this.txtCStateCode);
             this.GroupBox1.Controls.Add(this.label18);
-            this.GroupBox1.Controls.Add(this.textBox1);
+            this.GroupBox1.Controls.Add(this.txtCGSTIN);
             this.GroupBox1.Controls.Add(this.label17);
             this.GroupBox1.Controls.Add(this.txtTINNo);
             this.GroupBox1.Controls.Add(this.Label14);
@@ -433,6 +487,40 @@
             this.GroupBox1.Size = new System.Drawing.Size(428, 134);
             this.GroupBox1.TabIndex = 1;
             this.GroupBox1.TabStop = false;
+            // 
+            // txtCStateCode
+            // 
+            this.txtCStateCode.Location = new System.Drawing.Point(345, 107);
+            this.txtCStateCode.Name = "txtCStateCode";
+            this.txtCStateCode.Size = new System.Drawing.Size(75, 20);
+            this.txtCStateCode.TabIndex = 13;
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.DimGray;
+            this.label18.Location = new System.Drawing.Point(246, 110);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(93, 13);
+            this.label18.TabIndex = 14;
+            this.label18.Text = "State Code:";
+            // 
+            // txtCGSTIN
+            // 
+            this.txtCGSTIN.Location = new System.Drawing.Point(103, 107);
+            this.txtCGSTIN.Name = "txtCGSTIN";
+            this.txtCGSTIN.Size = new System.Drawing.Size(134, 20);
+            this.txtCGSTIN.TabIndex = 11;
+            // 
+            // label17
+            // 
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.DimGray;
+            this.label17.Location = new System.Drawing.Point(4, 110);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(90, 13);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "GSTIN:";
             // 
             // txtTINNo
             // 
@@ -849,94 +937,6 @@
             // 
             this.productsTableAdapter.ClearBeforeFill = true;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(103, 107);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(134, 20);
-            this.textBox1.TabIndex = 11;
-            // 
-            // label17
-            // 
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.DimGray;
-            this.label17.Location = new System.Drawing.Point(4, 110);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(90, 13);
-            this.label17.TabIndex = 12;
-            this.label17.Text = "GSTIN:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(345, 107);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(75, 20);
-            this.textBox2.TabIndex = 13;
-            // 
-            // label18
-            // 
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.Color.DimGray;
-            this.label18.Location = new System.Drawing.Point(246, 110);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(93, 13);
-            this.label18.TabIndex = 14;
-            this.label18.Text = "State Code:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(60, 407);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(134, 20);
-            this.textBox3.TabIndex = 47;
-            this.textBox3.Text = "33AJKPB8845K1ZY";
-            // 
-            // label19
-            // 
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.DimGray;
-            this.label19.Location = new System.Drawing.Point(8, 410);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(56, 13);
-            this.label19.TabIndex = 48;
-            this.label19.Text = "GSTIN:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(86, 431);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(108, 20);
-            this.textBox4.TabIndex = 49;
-            this.textBox4.Text = "33";
-            // 
-            // label20
-            // 
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.DimGray;
-            this.label20.Location = new System.Drawing.Point(8, 434);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(79, 13);
-            this.label20.TabIndex = 50;
-            this.label20.Text = "State Code:";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(85, 455);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(108, 20);
-            this.textBox5.TabIndex = 51;
-            this.textBox5.Text = "84511010";
-            // 
-            // label21
-            // 
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.DimGray;
-            this.label21.Location = new System.Drawing.Point(7, 458);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(80, 13);
-            this.label21.TabIndex = 52;
-            this.label21.Text = "HSN Code:";
-            // 
             // frmInvoicer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -973,11 +973,11 @@
         #endregion
 
         internal System.Windows.Forms.Panel Panel2;
-        internal System.Windows.Forms.TextBox txtFrieght;
+        internal System.Windows.Forms.TextBox txtIGST;
         internal System.Windows.Forms.Label Label16;
         internal System.Windows.Forms.RadioButton radOldAddr;
         internal System.Windows.Forms.RadioButton radNewAddr;
-        internal System.Windows.Forms.TextBox txtCST;
+        internal System.Windows.Forms.TextBox txtSGST;
         internal System.Windows.Forms.Label Label15;
         internal System.Windows.Forms.TextBox txtDiscount;
         internal System.Windows.Forms.Label Label13;
@@ -988,7 +988,7 @@
         internal System.Windows.Forms.Label Label9;
         internal System.Windows.Forms.TextBox txtLineAmount;
         internal System.Windows.Forms.Label Label8;
-        internal System.Windows.Forms.TextBox txtVAT;
+        internal System.Windows.Forms.TextBox txtCGST;
         internal System.Windows.Forms.Label Label12;
         internal System.Windows.Forms.TextBox txtTotalDiscount;
         internal System.Windows.Forms.Label Label11;
@@ -1044,15 +1044,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Product;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
-        internal System.Windows.Forms.TextBox textBox2;
+        internal System.Windows.Forms.TextBox txtCStateCode;
         internal System.Windows.Forms.Label label18;
-        internal System.Windows.Forms.TextBox textBox1;
+        internal System.Windows.Forms.TextBox txtCGSTIN;
         internal System.Windows.Forms.Label label17;
-        internal System.Windows.Forms.TextBox textBox4;
+        internal System.Windows.Forms.TextBox txtStateCode;
         internal System.Windows.Forms.Label label20;
-        internal System.Windows.Forms.TextBox textBox3;
+        internal System.Windows.Forms.TextBox txtGSTIN;
         internal System.Windows.Forms.Label label19;
-        internal System.Windows.Forms.TextBox textBox5;
+        internal System.Windows.Forms.TextBox txtHSNCode;
         internal System.Windows.Forms.Label label21;
     }
 }

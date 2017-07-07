@@ -54,19 +54,19 @@ namespace Invoicer
                     TotalDiscountAmount = TotalAmount - dblDiscount;
                     txtTotalDiscount.Text = TotalDiscountAmount.ToString();
 
-                    if (!(string.IsNullOrEmpty(txtVAT.Text.ToString())) && Convert.ToDouble(txtVAT.Text.ToString()) > 0)
+                    if (!(string.IsNullOrEmpty(txtCGST.Text.ToString())) && Convert.ToDouble(txtCGST.Text.ToString()) > 0)
                     {
-                        dblTaxVAlue = Convert.ToDouble(txtVAT.Text.ToString()) / 100;
+                        dblTaxVAlue = Convert.ToDouble(txtCGST.Text.ToString()) / 100;
                         dblTaxAmount = TotalDiscountAmount * dblTaxVAlue;
                     }
-                    else if (!(string.IsNullOrEmpty(txtCST.Text.ToString())) && Convert.ToDouble(txtCST.Text.ToString()) > 0)
+                    else if (!(string.IsNullOrEmpty(txtSGST.Text.ToString())) && Convert.ToDouble(txtSGST.Text.ToString()) > 0)
                     {
-                        dblTaxVAlue = Convert.ToDouble(txtCST.Text.ToString()) / 100;
+                        dblTaxVAlue = Convert.ToDouble(txtSGST.Text.ToString()) / 100;
                         dblTaxAmount = TotalDiscountAmount * dblTaxVAlue;
                     }
                     txtTaxAmount.Text = dblTaxAmount.ToString();
 
-                    dblTotalAmount = TotalDiscountAmount + dblTaxAmount + Convert.ToDouble(txtFrieght.Text.ToString());
+                    dblTotalAmount = TotalDiscountAmount + dblTaxAmount + Convert.ToDouble(txtIGST.Text.ToString());
                     txtTotalAmount.Text = dblTotalAmount.ToString();
                 }
             }
@@ -140,9 +140,9 @@ namespace Invoicer
                     DCNoDate = Convert.ToDateTime(dtDCDate.Text);
                 }
                 double? Discount = this.txtDiscount.Text != "" ? Convert.ToDouble(txtDiscount.Text) : 0;
-                double? VAT = this.txtVAT.Text != "" ? Convert.ToDouble(txtVAT.Text) : 0;
-                double? CST = this.txtCST.Text != "" ? Convert.ToDouble(txtCST.Text) : 0;
-                decimal? Freight = this.txtFrieght.Text != "" ? Convert.ToDecimal(txtFrieght.Text) : 0;
+                double? CGST = this.txtCGST.Text != "" ? Convert.ToDouble(txtCGST.Text) : 0;
+                double? SGST = this.txtSGST.Text != "" ? Convert.ToDouble(txtSGST.Text) : 0;
+                double? IGST = this.txtIGST.Text != "" ? Convert.ToDouble(txtIGST.Text) : 0;
                 decimal? LineAmount = this.txtLineAmount.Text != "" ? Convert.ToDecimal(txtLineAmount.Text) : 0;
                 decimal? SubTotal = this.txtTotalDiscount.Text != "" ? Convert.ToDecimal(txtTotalDiscount.Text) : 0;
 
@@ -153,6 +153,10 @@ namespace Invoicer
                 string OrderNo = this.txtRefNo.Text != "" ? txtRefNo.Text : null;
 
                 bool AddressFlag = this.radNewAddr.Checked ? true : false;
+                
+                string HSNCode = this.txtHSNCode.Text != "" ? this.txtHSNCode.Text : null;
+                string GSTIN = this.txtGSTIN.Text != "" ? this.txtGSTIN.Text : null;
+                string StateCode = this.txtStateCode.Text != "" ? this.txtStateCode.Text : null;
 
                 InvoicerDataSetTableAdapters.LineItemTableAdapter objData = new InvoicerDataSetTableAdapters.LineItemTableAdapter();
 
@@ -164,7 +168,7 @@ namespace Invoicer
                     {
                         foreach (DataRow item in dtLineItem.Rows)
                         {
-                            objData.Insert(intInvoiceID, Convert.ToInt32(item["SNo"]), item["Product"].ToString(), Convert.ToDecimal(item["UnitPrice"].ToString()), Convert.ToInt16(item["Quantity"].ToString()));
+                            objData.Insert(intInvoiceID, Convert.ToInt32(item["SNo"]), item["Product"].ToString(), HSNCode, Convert.ToDecimal(item["UnitPrice"].ToString()), Convert.ToInt16(item["Quantity"].ToString()));
                         }
                     }
                     else
@@ -174,7 +178,7 @@ namespace Invoicer
                     }
                 }
 
-                return objInvoice.Insert(intClientID, InvoiceDate, Discount, VAT, CST, Freight, LineAmount, SubTotal, TaxAmount, TotalAmount, AddressFlag, null, OrderNo, DCNoDate, OrderDate);
+                return objInvoice.Insert(intClientID, InvoiceDate, Discount, CGST, SGST, IGST, null, LineAmount, SubTotal, TaxAmount, TotalAmount, AddressFlag, null, OrderNo, DCNoDate, OrderDate, GSTIN, StateCode);
             }
             catch (Exception)
             {
@@ -248,6 +252,8 @@ namespace Invoicer
                         txtTINNo.Text = dtClient.Rows[0]["TINNO"].ToString();
                         txtVendorCode.Text = dtClient.Rows[0]["VendorCode"].ToString();
                         txtDCNo.Text = dtClient.Rows[0]["DCNO"].ToString();
+                        txtCGSTIN.Text = dtClient.Rows[0]["GSTIN"].ToString();
+                        txtCStateCode.Text = dtClient.Rows[0]["StateCode"].ToString();
                     }
                     else
                     {
@@ -258,6 +264,8 @@ namespace Invoicer
                         txtTINNo.Text = "";
                         txtVendorCode.Text = "";
                         txtDCNo.Text = "";
+                        txtCGSTIN.Text = "";
+                        txtCStateCode.Text = "";
                     }
                 }
                 else
@@ -269,6 +277,8 @@ namespace Invoicer
                     txtTINNo.Text = "";
                     txtVendorCode.Text = "";
                     txtDCNo.Text = "";
+                    txtCGSTIN.Text = "";
+                    txtCStateCode.Text = "";
                 }
             }
 

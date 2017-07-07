@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.grpClient = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtStateCode = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtGSTIN = new System.Windows.Forms.TextBox();
             this.txtTINNo = new System.Windows.Forms.TextBox();
             this.Label14 = new System.Windows.Forms.Label();
             this.txtVendorCode = new System.Windows.Forms.TextBox();
@@ -53,6 +57,10 @@
             // 
             // grpClient
             // 
+            this.grpClient.Controls.Add(this.label1);
+            this.grpClient.Controls.Add(this.txtStateCode);
+            this.grpClient.Controls.Add(this.label2);
+            this.grpClient.Controls.Add(this.txtGSTIN);
             this.grpClient.Controls.Add(this.txtTINNo);
             this.grpClient.Controls.Add(this.Label14);
             this.grpClient.Controls.Add(this.txtVendorCode);
@@ -74,10 +82,45 @@
             this.grpClient.ForeColor = System.Drawing.Color.DimGray;
             this.grpClient.Location = new System.Drawing.Point(12, 5);
             this.grpClient.Name = "grpClient";
-            this.grpClient.Size = new System.Drawing.Size(417, 219);
+            this.grpClient.Size = new System.Drawing.Size(417, 236);
             this.grpClient.TabIndex = 2;
             this.grpClient.TabStop = false;
-            this.grpClient.Text = "Customer Add/Edit";
+            this.grpClient.Text = "Customer Detail";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(259, 214);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 57;
+            this.label1.Text = "State Code:";
+            // 
+            // txtStateCode
+            // 
+            this.txtStateCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStateCode.Location = new System.Drawing.Point(339, 211);
+            this.txtStateCode.Name = "txtStateCode";
+            this.txtStateCode.Size = new System.Drawing.Size(68, 20);
+            this.txtStateCode.TabIndex = 58;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(8, 214);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 13);
+            this.label2.TabIndex = 55;
+            this.label2.Text = "GSTIN:";
+            // 
+            // txtGSTIN
+            // 
+            this.txtGSTIN.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGSTIN.Location = new System.Drawing.Point(108, 211);
+            this.txtGSTIN.Name = "txtGSTIN";
+            this.txtGSTIN.Size = new System.Drawing.Size(145, 20);
+            this.txtGSTIN.TabIndex = 56;
             // 
             // txtTINNo
             // 
@@ -231,12 +274,10 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(287, 232);
+            this.btnSave.Location = new System.Drawing.Point(281, 243);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(62, 24);
-            this.btnSave.TabIndex = 34;
+            this.btnSave.Size = new System.Drawing.Size(69, 24);
+            this.btnSave.TabIndex = 36;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -244,32 +285,29 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(356, 232);
+            this.btnCancel.Location = new System.Drawing.Point(351, 243);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(62, 24);
-            this.btnCancel.TabIndex = 35;
+            this.btnCancel.Size = new System.Drawing.Size(69, 24);
+            this.btnCancel.TabIndex = 37;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frmClientEdit
             // 
-            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(442, 262);
+            this.ClientSize = new System.Drawing.Size(442, 269);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.grpClient);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.grpClient);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmClientEdit";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Client Edit";
+            this.Text = "Client";
             this.grpClient.ResumeLayout(false);
             this.grpClient.PerformLayout();
             this.ResumeLayout(false);
@@ -290,13 +328,17 @@
         internal System.Windows.Forms.Label CityLabel;
         internal System.Windows.Forms.Label StateLabel;
         internal System.Windows.Forms.TextBox StateTextBox;
-        internal System.Windows.Forms.Button btnSave;
         internal System.Windows.Forms.TextBox txtTINNo;
         internal System.Windows.Forms.Label Label14;
         internal System.Windows.Forms.TextBox txtVendorCode;
         internal System.Windows.Forms.TextBox txtDCNo;
         internal System.Windows.Forms.Label Label4;
         internal System.Windows.Forms.Label lblDCNo;
+        internal System.Windows.Forms.Button btnSave;
         internal System.Windows.Forms.Button btnCancel;
+        internal System.Windows.Forms.Label label1;
+        internal System.Windows.Forms.TextBox txtStateCode;
+        internal System.Windows.Forms.Label label2;
+        internal System.Windows.Forms.TextBox txtGSTIN;
     }
 }

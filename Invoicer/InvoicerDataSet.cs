@@ -7,3 +7,10 @@
     }
 }
 
+
+namespace Invoicer.InvoicerDataSetTableAdapters {
+    
+    
+    public partial class LineItemTableAdapter {
+    }
+}
