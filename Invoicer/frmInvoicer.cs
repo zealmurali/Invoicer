@@ -33,6 +33,7 @@ namespace Invoicer
                 double dblTaxAmount = 0.0;
                 double dblTaxVAlue = 0.0;
                 double dblTotalAmount = 0.0;
+                double dblCGSTAmount = 0.0; double dblSGSTAmount = 0.0; double dblIGSTAmount = 0.0;
                 intTotalRowCount = dgInvoicer.Rows.Count - 1;
                 if (dgInvoicer.Rows.Count > 0)
                 {
@@ -57,16 +58,24 @@ namespace Invoicer
                     if (!(string.IsNullOrEmpty(txtCGST.Text.ToString())) && Convert.ToDouble(txtCGST.Text.ToString()) > 0)
                     {
                         dblTaxVAlue = Convert.ToDouble(txtCGST.Text.ToString()) / 100;
-                        dblTaxAmount = TotalDiscountAmount * dblTaxVAlue;
+                        dblCGSTAmount = TotalDiscountAmount * dblTaxVAlue;
                     }
-                    else if (!(string.IsNullOrEmpty(txtSGST.Text.ToString())) && Convert.ToDouble(txtSGST.Text.ToString()) > 0)
+
+                    if (!(string.IsNullOrEmpty(txtSGST.Text.ToString())) && Convert.ToDouble(txtSGST.Text.ToString()) > 0)
                     {
                         dblTaxVAlue = Convert.ToDouble(txtSGST.Text.ToString()) / 100;
-                        dblTaxAmount = TotalDiscountAmount * dblTaxVAlue;
+                        dblSGSTAmount = TotalDiscountAmount * dblTaxVAlue;
                     }
+
+                    if (!(string.IsNullOrEmpty(txtIGST.Text.ToString())) && Convert.ToDouble(txtIGST.Text.ToString()) > 0)
+                    {
+                        dblTaxVAlue = Convert.ToDouble(txtIGST.Text.ToString()) / 100;
+                        dblIGSTAmount = TotalDiscountAmount * dblTaxVAlue;
+                    }
+                    dblTaxAmount = dblCGSTAmount + dblSGSTAmount + dblIGSTAmount;
                     txtTaxAmount.Text = dblTaxAmount.ToString();
 
-                    dblTotalAmount = TotalDiscountAmount + dblTaxAmount + Convert.ToDouble(txtIGST.Text.ToString());
+                    dblTotalAmount = TotalDiscountAmount + dblTaxAmount;
                     txtTotalAmount.Text = dblTotalAmount.ToString();
                 }
             }
@@ -222,11 +231,45 @@ namespace Invoicer
             }
         }
 
-        private void DisplayData(int intInvoiceNo)
+        public void DisplayData(int intInvoiceNo)
         {
+            DataSet dsInvoicer = null;
             try
             {
+                InvoicerDataSetTableAdapters.ClientTableAdapter objClient = new InvoicerDataSetTableAdapters.ClientTableAdapter();
 
+                InvoicerDataSetTableAdapters.InvoiceTableAdapter objInvoice = new InvoicerDataSetTableAdapters.InvoiceTableAdapter();
+
+                InvoicerDataSetTableAdapters.LineItemTableAdapter objLineItem = new InvoicerDataSetTableAdapters.LineItemTableAdapter();
+                dsInvoicer = new DataSet();
+                DataTable dtInvoice = objInvoice.GetDataByID(intInvoiceNo);
+                foreach (DataRow drInvoice in dtInvoice.Rows)
+                {
+                    //SELECT AddressFlag, CGST, ClientID, DCNoDate, Discount, Freight, GSTIN, IGST, InvoiceDate, 
+                    //InvoiceID, InvoicePath, LineAmount, OrderDate, OrderNo, SGST, StateCode, 
+                    //SubTotal, TaxAmount, TotalAmount FROM Invoice WHERE (InvoiceID = ?)
+                    cmbClient.SelectedValue = drInvoice["ClientID"].ToString();
+                    txtInvoiceNo.Text = drInvoice["InvoiceID"].ToString();
+                    dtInvoiceDate.Text = drInvoice["InvoiceDate"].ToString();
+                    dtDCDate.Text = drInvoice["DCNoDate"].ToString();
+                    dtRefDate.Text = drInvoice["OrderDate"].ToString();
+                    txtRefNo.Text = drInvoice["OrderNo"].ToString();
+                    txtCGST.Text = drInvoice["CGST"].ToString();
+                    txtSGST.Text = drInvoice["SGST"].ToString();
+                    txtIGST.Text = drInvoice["IGST"].ToString();
+                    txtDiscount.Text = drInvoice["Discount"].ToString();
+                    txtGSTIN.Text = drInvoice["GSTIN"].ToString();
+                    txtStateCode.Text = drInvoice["StateCode"].ToString();                    
+                    radNewAddr.Checked = drInvoice["AddressFlag"].ToString()== "1" ? true : false;
+                    txtTaxAmount.Text = drInvoice["TaxAmount"].ToString();
+                    txtLineAmount.Text = drInvoice["LineAmount"].ToString();
+                    txtTotalDiscount.Text = drInvoice["SubTotal"].ToString();
+                    txtTotalAmount.Text = drInvoice["TotalAmount"].ToString();
+
+                    DataTable dtLineItem = objLineItem.GetDataByID(intInvoiceNo);
+                    dgInvoicer.DataSource = dtLineItem;
+                    dgInvoicer.Refresh();
+                }
             }
             catch (Exception excLocal)
             {

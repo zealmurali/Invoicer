@@ -114,8 +114,13 @@ namespace Invoicer
                 if (dgInvoice.SelectedRows.Count >= 1)
                 {
                     intInvoiceNo = Convert.ToInt32(dgInvoice.SelectedRows[0].Cells["InvoiceID"].Value.ToString());
-                    frmInvoicer objInvoicer = new frmInvoicer(intInvoiceNo);
-                    objInvoicer.ShowDialog(this);            
+                    //this.Owner.ShowDialog(this);
+                    //frmInvoicer objInvoicer = new frmInvoicer(intInvoiceNo);
+                    //objInvoicer.ShowDialog(this);
+                    //this.Owner.Close();                   
+                    frmInvoicer myParent = (frmInvoicer)this.Owner;
+                    myParent.DisplayData(intInvoiceNo);
+                    this.Close();
                 }
             }
             catch (Exception ex)
