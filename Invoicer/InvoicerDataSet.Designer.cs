@@ -799,6 +799,8 @@ namespace Invoicer {
             
             private global::System.Data.DataColumn columnClientID;
             
+            private global::System.Data.DataColumn columnClientName;
+            
             private global::System.Data.DataColumn columnInvoiceDate;
             
             private global::System.Data.DataColumn columnDiscount;
@@ -879,6 +881,14 @@ namespace Invoicer {
             public global::System.Data.DataColumn ClientIDColumn {
                 get {
                     return this.columnClientID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ClientNameColumn {
+                get {
+                    return this.columnClientName;
                 }
             }
             
@@ -1057,6 +1067,7 @@ namespace Invoicer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public InvoiceRow AddInvoiceRow(
                         int ClientID, 
+                        string ClientName, 
                         System.DateTime InvoiceDate, 
                         double Discount, 
                         decimal Freight, 
@@ -1078,6 +1089,7 @@ namespace Invoicer {
                 object[] columnValuesArray = new object[] {
                         null,
                         ClientID,
+                        ClientName,
                         InvoiceDate,
                         Discount,
                         Freight,
@@ -1126,6 +1138,7 @@ namespace Invoicer {
             internal void InitVars() {
                 this.columnInvoiceID = base.Columns["InvoiceID"];
                 this.columnClientID = base.Columns["ClientID"];
+                this.columnClientName = base.Columns["ClientName"];
                 this.columnInvoiceDate = base.Columns["InvoiceDate"];
                 this.columnDiscount = base.Columns["Discount"];
                 this.columnFreight = base.Columns["Freight"];
@@ -1152,6 +1165,8 @@ namespace Invoicer {
                 base.Columns.Add(this.columnInvoiceID);
                 this.columnClientID = new global::System.Data.DataColumn("ClientID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnClientID);
+                this.columnClientName = new global::System.Data.DataColumn("ClientName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnClientName);
                 this.columnInvoiceDate = new global::System.Data.DataColumn("InvoiceDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnInvoiceDate);
                 this.columnDiscount = new global::System.Data.DataColumn("Discount", typeof(double), null, global::System.Data.MappingType.Element);
@@ -1193,6 +1208,7 @@ namespace Invoicer {
                 this.columnInvoiceID.AutoIncrementStep = -1;
                 this.columnInvoiceID.AllowDBNull = false;
                 this.columnInvoiceID.Unique = true;
+                this.columnClientName.MaxLength = 255;
                 this.columnInvoicePath.MaxLength = 255;
                 this.columnOrderNo.MaxLength = 255;
                 this.columnGSTIN.MaxLength = 15;
@@ -2267,6 +2283,22 @@ namespace Invoicer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ClientName {
+                get {
+                    try {
+                        return ((string)(this[this.tableInvoice.ClientNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ClientName\' in table \'Invoice\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableInvoice.ClientNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime InvoiceDate {
                 get {
                     try {
@@ -2547,6 +2579,18 @@ namespace Invoicer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetClientIDNull() {
                 this[this.tableInvoice.ClientIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsClientNameNull() {
+                return this.IsNull(this.tableInvoice.ClientNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetClientNameNull() {
+                this[this.tableInvoice.ClientNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3356,7 +3400,7 @@ namespace Invoicer.InvoicerDataSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        ClientID, ClientName, Address, City, State, Zip, DCNO, VendorCode, " +
-                "TINNO, GSTIN, StateCode\r\nFROM            Client";
+                "TINNO, GSTIN, StateCode\r\nFROM            Client\r\nORDER BY ClientName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -3373,7 +3417,7 @@ namespace Invoicer.InvoicerDataSetTableAdapters {
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "SELECT        0 AS ClientID, \'<--Select Customer-->\' AS ClientName\r\nFROM         " +
                 "   Client\r\nUNION\r\nSELECT        ClientID, ClientName\r\nFROM            Client Cli" +
-                "ent_1";
+                "ent_1\r\nORDER BY ClientName";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[4].Connection = this.Connection;
@@ -3879,13 +3923,13 @@ namespace Invoicer.InvoicerDataSetTableAdapters {
         public virtual int UpdateClient(string ClientName, string Address, string City, string State, string Zip, string DCNO, string VendorCode, string TINNO, string GSTIN, string StateCode, int Original_ClientID) {
             global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[4];
             if ((ClientName == null)) {
-                throw new global::System.ArgumentNullException("ClientName");
+                command.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 command.Parameters[0].Value = ((string)(ClientName));
             }
             if ((Address == null)) {
-                throw new global::System.ArgumentNullException("Address");
+                command.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
                 command.Parameters[1].Value = ((string)(Address));
@@ -4252,7 +4296,8 @@ namespace Invoicer.InvoicerDataSetTableAdapters {
                          Invoice.InvoicePath, Invoice.OrderNo, Invoice.DCNoDate, Invoice.OrderDate, Client.ClientName, Invoice.GSTIN, Invoice.StateCode
 FROM            (Invoice INNER JOIN
                          Client ON Invoice.ClientID = Client.ClientID)
-WHERE        (Invoice.InvoiceDate BETWEEN ? AND ?)";
+WHERE        (Invoice.InvoiceDate BETWEEN ? AND ?)
+ORDER BY Invoice.InvoiceID DESC";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceDate", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceDate1", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceDate", global::System.Data.DataRowVersion.Current, false, null));

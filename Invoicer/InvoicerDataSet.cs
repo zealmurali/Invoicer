@@ -4,6 +4,9 @@
 
     public partial class InvoicerDataSet
     {
+        partial class InvoiceDataTable
+        {
+        }
     }
 }
 

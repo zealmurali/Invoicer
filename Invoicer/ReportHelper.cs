@@ -39,13 +39,13 @@ namespace Invoicer
                     rptDoc = new ReportDocument();
                     rptDoc.Load(strSourceRptPath + "rptInvoiceDetails.rpt");
 
-                    DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
-                    Invoicer.Properties.Settings objsettings = new Properties.Settings();
+                    //DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
+                    //Invoicer.Properties.Settings objsettings = new Properties.Settings();
 
-                    //builder.ConnectionString = ConfigurationManager.ConnectionStrings["Invoicer.Properties.Settings.InvoicerConnectionString"].ConnectionString;
-                    builder.ConnectionString = objsettings.InvoicerConnectionString.ToString();
-                    string databasepath = builder["Data Source"] as string;
-
+                    ////builder.ConnectionString = ConfigurationManager.ConnectionStrings["Invoicer.Properties.Settings.InvoicerConnectionString"].ConnectionString;
+                    //builder.ConnectionString = objsettings.InvoicerConnectionString.ToString();
+                    //string databasepath = builder["Data Source"] as string;
+                    string databasepath = ConfigurationManager.AppSettings["InvoiceDBPath"].ToString();
                     ////change path of the database
                     rptDoc.DataSourceConnections[0].SetConnection("", databasepath, false);
 

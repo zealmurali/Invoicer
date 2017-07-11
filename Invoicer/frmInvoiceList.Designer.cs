@@ -30,39 +30,38 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgInvoice = new System.Windows.Forms.DataGridView();
-            this.invoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.invoicerDataSet = new Invoicer.InvoicerDataSet();
-            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clientTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ClientTableAdapter();
-            this.invoiceTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.InvoiceTableAdapter();
+            this.ctxtInvoice = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dtToDate = new System.Windows.Forms.DateTimePicker();
             this.dtFromDate = new System.Windows.Forms.DateTimePicker();
             this.Label6 = new System.Windows.Forms.Label();
             this.Label5 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
-            this.ctxtInvoice = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.invoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.invoicerDataSet = new Invoicer.InvoicerDataSet();
+            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clientTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ClientTableAdapter();
+            this.invoiceTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.InvoiceTableAdapter();
             this.InvoiceID = new System.Windows.Forms.DataGridViewLinkColumn();
             this.clientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DCNoDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaxAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LineAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Freight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CST = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaxAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoice)).BeginInit();
+            this.ctxtInvoice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
-            this.ctxtInvoice.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgInvoice
@@ -74,16 +73,15 @@
             this.dgInvoice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.InvoiceID,
             this.clientIDDataGridViewTextBoxColumn,
+            this.ClientName,
             this.InvoiceDate,
             this.OrderNo,
             this.OrderDate,
             this.DCNoDate,
-            this.TotalAmount,
-            this.TaxAmount,
             this.LineAmount,
-            this.Freight,
-            this.CST,
-            this.Discount});
+            this.Discount,
+            this.TaxAmount,
+            this.TotalAmount});
             this.dgInvoice.ContextMenuStrip = this.ctxtInvoice;
             this.dgInvoice.DataSource = this.invoiceBindingSource;
             this.dgInvoice.Location = new System.Drawing.Point(6, 37);
@@ -91,31 +89,46 @@
             this.dgInvoice.Name = "dgInvoice";
             this.dgInvoice.ReadOnly = true;
             this.dgInvoice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgInvoice.Size = new System.Drawing.Size(926, 417);
+            this.dgInvoice.Size = new System.Drawing.Size(925, 417);
             this.dgInvoice.TabIndex = 0;
             // 
-            // invoiceBindingSource
+            // ctxtInvoice
             // 
-            this.invoiceBindingSource.DataMember = "Invoice";
-            this.invoiceBindingSource.DataSource = this.invoicerDataSet;
+            this.ctxtInvoice.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.closeToolStripMenuItem});
+            this.ctxtInvoice.Name = "ctxtClient";
+            this.ctxtInvoice.Size = new System.Drawing.Size(104, 92);
             // 
-            // invoicerDataSet
+            // newToolStripMenuItem
             // 
-            this.invoicerDataSet.DataSetName = "InvoicerDataSet";
-            this.invoicerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.newToolStripMenuItem.Text = "&New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
-            // clientBindingSource
+            // editToolStripMenuItem
             // 
-            this.clientBindingSource.DataMember = "Client";
-            this.clientBindingSource.DataSource = this.invoicerDataSet;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.editToolStripMenuItem.Text = "&Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
-            // clientTableAdapter
+            // toolStripMenuItem1
             // 
-            this.clientTableAdapter.ClearBeforeFill = true;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.toolStripMenuItem1.Text = "&Print";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // invoiceTableAdapter
+            // closeToolStripMenuItem
             // 
-            this.invoiceTableAdapter.ClearBeforeFill = true;
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.closeToolStripMenuItem.Text = "&Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // dtToDate
             // 
@@ -158,7 +171,7 @@
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(451, 6);
+            this.btnSearch.Location = new System.Drawing.Point(453, 6);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(80, 24);
             this.btnSearch.TabIndex = 17;
@@ -169,7 +182,7 @@
             // btnReset
             // 
             this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReset.Location = new System.Drawing.Point(534, 6);
+            this.btnReset.Location = new System.Drawing.Point(536, 6);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(80, 24);
             this.btnReset.TabIndex = 18;
@@ -177,50 +190,38 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // ctxtInvoice
+            // invoiceBindingSource
             // 
-            this.ctxtInvoice.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.closeToolStripMenuItem});
-            this.ctxtInvoice.Name = "ctxtClient";
-            this.ctxtInvoice.Size = new System.Drawing.Size(104, 92);
+            this.invoiceBindingSource.DataMember = "Invoice";
+            this.invoiceBindingSource.DataSource = this.invoicerDataSet;
             // 
-            // newToolStripMenuItem
+            // invoicerDataSet
             // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.newToolStripMenuItem.Text = "&New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            this.invoicerDataSet.DataSetName = "InvoicerDataSet";
+            this.invoicerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // editToolStripMenuItem
+            // clientBindingSource
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "&Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            this.clientBindingSource.DataMember = "Client";
+            this.clientBindingSource.DataSource = this.invoicerDataSet;
             // 
-            // closeToolStripMenuItem
+            // clientTableAdapter
             // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.closeToolStripMenuItem.Text = "&Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            this.clientTableAdapter.ClearBeforeFill = true;
             // 
-            // toolStripMenuItem1
+            // invoiceTableAdapter
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem1.Text = "&Print";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.invoiceTableAdapter.ClearBeforeFill = true;
             // 
             // InvoiceID
             // 
             this.InvoiceID.DataPropertyName = "InvoiceID";
-            this.InvoiceID.HeaderText = "InvoiceID";
+            this.InvoiceID.HeaderText = "Inv No";
+            this.InvoiceID.LinkColor = System.Drawing.Color.Empty;
             this.InvoiceID.Name = "InvoiceID";
             this.InvoiceID.ReadOnly = true;
+            this.InvoiceID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.InvoiceID.Width = 60;
             // 
             // clientIDDataGridViewTextBoxColumn
             // 
@@ -228,27 +229,38 @@
             this.clientIDDataGridViewTextBoxColumn.HeaderText = "ClientID";
             this.clientIDDataGridViewTextBoxColumn.Name = "clientIDDataGridViewTextBoxColumn";
             this.clientIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.clientIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // ClientName
+            // 
+            this.ClientName.DataPropertyName = "ClientName";
+            this.ClientName.HeaderText = "Client";
+            this.ClientName.Name = "ClientName";
+            this.ClientName.ReadOnly = true;
+            this.ClientName.Width = 205;
             // 
             // InvoiceDate
             // 
             this.InvoiceDate.DataPropertyName = "InvoiceDate";
-            this.InvoiceDate.HeaderText = "InvoiceDate";
+            this.InvoiceDate.HeaderText = "Inv Date";
             this.InvoiceDate.Name = "InvoiceDate";
             this.InvoiceDate.ReadOnly = true;
+            this.InvoiceDate.Width = 60;
             // 
             // OrderNo
             // 
             this.OrderNo.DataPropertyName = "OrderNo";
-            this.OrderNo.HeaderText = "OrderNo";
+            this.OrderNo.HeaderText = "PO No";
             this.OrderNo.Name = "OrderNo";
             this.OrderNo.ReadOnly = true;
             // 
             // OrderDate
             // 
             this.OrderDate.DataPropertyName = "OrderDate";
-            this.OrderDate.HeaderText = "OrderDate";
+            this.OrderDate.HeaderText = "PO Date";
             this.OrderDate.Name = "OrderDate";
             this.OrderDate.ReadOnly = true;
+            this.OrderDate.Width = 60;
             // 
             // DCNoDate
             // 
@@ -256,41 +268,15 @@
             this.DCNoDate.HeaderText = "DCNoDate";
             this.DCNoDate.Name = "DCNoDate";
             this.DCNoDate.ReadOnly = true;
-            // 
-            // TotalAmount
-            // 
-            this.TotalAmount.DataPropertyName = "TotalAmount";
-            this.TotalAmount.HeaderText = "TotalAmount";
-            this.TotalAmount.Name = "TotalAmount";
-            this.TotalAmount.ReadOnly = true;
-            // 
-            // TaxAmount
-            // 
-            this.TaxAmount.DataPropertyName = "TaxAmount";
-            this.TaxAmount.HeaderText = "TaxAmount";
-            this.TaxAmount.Name = "TaxAmount";
-            this.TaxAmount.ReadOnly = true;
+            this.DCNoDate.Width = 60;
             // 
             // LineAmount
             // 
             this.LineAmount.DataPropertyName = "LineAmount";
-            this.LineAmount.HeaderText = "LineAmount";
+            this.LineAmount.HeaderText = "Sub Total";
             this.LineAmount.Name = "LineAmount";
             this.LineAmount.ReadOnly = true;
-            // 
-            // Freight
-            // 
-            this.Freight.DataPropertyName = "Freight";
-            this.Freight.HeaderText = "Freight";
-            this.Freight.Name = "Freight";
-            this.Freight.ReadOnly = true;
-            // 
-            // CST
-            // 
-            this.CST.DataPropertyName = "CST";
-            this.CST.HeaderText = "CST";
-            this.CST.Name = "CST";
-            this.CST.ReadOnly = true;
+            this.LineAmount.Width = 80;
             // 
             // Discount
             // 
@@ -298,13 +284,30 @@
             this.Discount.HeaderText = "Discount";
             this.Discount.Name = "Discount";
             this.Discount.ReadOnly = true;
+            this.Discount.Width = 80;
+            // 
+            // TaxAmount
+            // 
+            this.TaxAmount.DataPropertyName = "TaxAmount";
+            this.TaxAmount.HeaderText = "Tax";
+            this.TaxAmount.Name = "TaxAmount";
+            this.TaxAmount.ReadOnly = true;
+            this.TaxAmount.Width = 80;
+            // 
+            // TotalAmount
+            // 
+            this.TotalAmount.DataPropertyName = "TotalAmount";
+            this.TotalAmount.HeaderText = "Total";
+            this.TotalAmount.Name = "TotalAmount";
+            this.TotalAmount.ReadOnly = true;
+            this.TotalAmount.Width = 80;
             // 
             // frmInvoiceList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(933, 455);
+            this.ClientSize = new System.Drawing.Size(935, 455);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.dtToDate);
@@ -317,10 +320,10 @@
             this.Text = "Invoice List";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoice)).EndInit();
+            this.ctxtInvoice.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
-            this.ctxtInvoice.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -347,16 +350,15 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.DataGridViewLinkColumn InvoiceID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clientIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
         private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn DCNoDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TaxAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn LineAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Freight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CST;
         private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TaxAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmount;
     }
 }
 

@@ -99,6 +99,8 @@ namespace Invoicer
                         {
                             if (ReportHelper.GeneratePDFReport(Convert.ToInt32(txtInvoiceNo.Text), cmbClient.SelectedText.ToString()))
                             {
+                                DisplayData(Convert.ToInt32(txtInvoiceNo.Text));
+                                MessageBox.Show(this, "Invoice has been generated successfully", "Invoicer");
                             }
                         }
                     }
@@ -141,12 +143,16 @@ namespace Invoicer
                 }
                 if (this.dtRefDate.Text != "")
                 {
+                    dtRefDate.CustomFormat = "MM/dd/yyyy";
                     OrderDate = Convert.ToDateTime(dtRefDate.Text);
+                    dtRefDate.CustomFormat = "dd/MM/yyyy";
                 }
 
                 if (this.dtDCDate.Text != "")
                 {
+                    dtDCDate.CustomFormat = "MM/dd/yyyy";
                     DCNoDate = Convert.ToDateTime(dtDCDate.Text);
+                    dtDCDate.CustomFormat = "dd/MM/yyyy";
                 }
                 double? Discount = this.txtDiscount.Text != "" ? Convert.ToDouble(txtDiscount.Text) : 0;
                 double? CGST = this.txtCGST.Text != "" ? Convert.ToDouble(txtCGST.Text) : 0;
@@ -187,7 +193,7 @@ namespace Invoicer
                     }
                 }
 
-                return objInvoice.Insert(intClientID, InvoiceDate, Discount, CGST, SGST, IGST, null, LineAmount, SubTotal, TaxAmount, TotalAmount, AddressFlag, null, OrderNo, DCNoDate, OrderDate, GSTIN, StateCode);
+                return objInvoice.Insert(intClientID, InvoiceDate, Discount, CGST, SGST, IGST, 0, LineAmount, SubTotal,TotalAmount, TaxAmount, AddressFlag, null, OrderNo, DCNoDate, OrderDate, GSTIN, StateCode);
             }
             catch (Exception)
             {
@@ -218,7 +224,14 @@ namespace Invoicer
                 }
                 else
                 {
-                    txtInvoiceNo.Text = objInvoice.GetNextInvoiceID().ToString();
+                    if (objInvoice.GetNextInvoiceID()!= null)
+                    {
+                        txtInvoiceNo.Text = objInvoice.GetNextInvoiceID().ToString();
+                    }
+                    else
+                    {
+                        txtInvoiceNo.Text = "1";
+                    }
                 }
 
                 // TODO: This line of code loads data into the 'invoicerDataSet.LineItem' table. You can move, or remove it, as needed.
@@ -260,7 +273,7 @@ namespace Invoicer
                     txtDiscount.Text = drInvoice["Discount"].ToString();
                     txtGSTIN.Text = drInvoice["GSTIN"].ToString();
                     txtStateCode.Text = drInvoice["StateCode"].ToString();                    
-                    radNewAddr.Checked = drInvoice["AddressFlag"].ToString()== "1" ? true : false;
+                    radOldAddr.Checked = drInvoice["AddressFlag"].ToString()== "True" ? false : true;
                     txtTaxAmount.Text = drInvoice["TaxAmount"].ToString();
                     txtLineAmount.Text = drInvoice["LineAmount"].ToString();
                     txtTotalDiscount.Text = drInvoice["SubTotal"].ToString();
@@ -336,12 +349,17 @@ namespace Invoicer
         {
             try
             {
-                //this.clientTableAdapter.FillBy(this.invoicerDataSet.Client);
+                if (txtInvoiceNo.Text != "")
+                {
+                    if (ReportHelper.GeneratePDFReport(Convert.ToInt32(txtInvoiceNo.Text), cmbClient.SelectedText.ToString()))
+                    {
+                        MessageBox.Show(this, "Invoice has been printed successfully", "Invoicer");
+                    }
+                }
             }
             catch (System.Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
-                throw ex;
             }
         }
 
@@ -367,7 +385,6 @@ namespace Invoicer
             catch (Exception excLocal)
             {
                 MessageBox.Show(excLocal.Message);
-                throw excLocal;
             }
         }
 
@@ -415,7 +432,6 @@ namespace Invoicer
             catch (Exception exclocal)
             {
                 MessageBox.Show(exclocal.Message);
-                throw exclocal;
             }
         }
 
@@ -429,7 +445,24 @@ namespace Invoicer
             catch (Exception exclocal)
             {
                 MessageBox.Show(exclocal.Message);
-                throw exclocal;
+            }
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtInvoiceNo.Text != "")
+                {
+                    if (ReportHelper.GeneratePDFReport(Convert.ToInt32(txtInvoiceNo.Text), cmbClient.SelectedText.ToString()))
+                    {
+                        MessageBox.Show(this, "Invoice has been printed successfully", "Invoicer");
+                    }
+                }
+            }
+            catch (Exception exclocal)
+            {
+                MessageBox.Show(exclocal.Message);
             }
         }
     }
