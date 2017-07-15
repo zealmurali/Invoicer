@@ -71,7 +71,7 @@ namespace Invoicer
                     {
                         Directory.CreateDirectory(strReportOutputPath);
                     }
-                    strFileName = "Invoice_" + intInvoiceid + ".pdf";
+                    strFileName = "Invoice_" + intInvoiceid + DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + ".pdf";
 
                     if (UpdatePDFFiles(strReportOutputPath + strFileName, intInvoiceid))
                     {
@@ -87,8 +87,8 @@ namespace Invoicer
 
                     //int intcount = rptDoc.Database.Tables.Count;
 
-                    rptDoc.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, strReportOutputPath + strFileName);
-                    rptDoc.PrintToPrinter(1, false, 0, 0);
+                    rptDoc.ExportToDisk(ExportFormatType.PortableDocFormat, strReportOutputPath + strFileName);
+                    //rptDoc.PrintToPrinter(1, false, 0, 0);
                 }
 
                 return true;

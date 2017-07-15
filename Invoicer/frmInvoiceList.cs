@@ -32,12 +32,36 @@ namespace Invoicer
         private void InitLoad()
         {
             DateTime dtStartDate = DateTime.Now;
+            DateTime? StartDate = null;
+            DateTime? EndDate = null;
             try
             {
                 dtStartDate = new DateTime(dtStartDate.Year, dtStartDate.Month, 1);
 
                 dtFromDate.Text = dtStartDate.ToString();
-                this.invoiceTableAdapter.FillByInvoiceList(this.invoicerDataSet.Invoice, new System.Nullable<System.DateTime>(((System.DateTime)(System.Convert.ChangeType(dtFromDate.Text, typeof(System.DateTime))))), new System.Nullable<System.DateTime>(((System.DateTime)(System.Convert.ChangeType(dtToDate.Text, typeof(System.DateTime))))));
+
+                if (this.dtFromDate.Text != "")
+                {
+                    dtFromDate.CustomFormat = "MM/dd/yyyy";
+                    StartDate = Convert.ToDateTime(dtFromDate.Text);
+                    dtFromDate.CustomFormat = "dd/MM/yyyy";
+                }
+                else
+                {
+                    MessageBox.Show("Please enter Start Date");
+                }
+
+                if (this.dtToDate.Text != "")
+                {
+                    dtToDate.CustomFormat = "MM/dd/yyyy";
+                    EndDate = Convert.ToDateTime(dtToDate.Text);
+                    dtToDate.CustomFormat = "dd/MM/yyyy";
+                }
+                else
+                {
+                    MessageBox.Show("Please enter End Date");
+                }
+                this.invoiceTableAdapter.FillByInvoiceList(this.invoicerDataSet.Invoice, StartDate, EndDate);
             }
             catch (Exception ex)
             {
@@ -149,7 +173,7 @@ namespace Invoicer
             string strClient = null;
             try
             {
-                if (dgInvoice.SelectedRows.Count >= 1)
+                if (dgInvoice.SelectedRows.Count >= 1 && dgInvoice.SelectedRows[0].Cells["InvoiceID"].Value != null)
                 {
                     intInvoiceNo = Convert.ToInt32(dgInvoice.SelectedRows[0].Cells["InvoiceID"].Value.ToString());
                     //strClient = dgInvoice.SelectedRows[0].Cells[""].ToString();

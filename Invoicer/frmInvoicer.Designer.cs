@@ -79,9 +79,9 @@
             this.Label3 = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.dgInvoicer = new System.Windows.Forms.DataGridView();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lineItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -106,9 +106,10 @@
             this.lineItemTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.LineItemTableAdapter();
             this.clientTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ClientTableAdapter();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.invoiceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuInvoiceList = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuClientList = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCreateNew = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productsTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ProductsTableAdapter();
             this.Panel2.SuspendLayout();
@@ -648,7 +649,7 @@
             this.dgInvoicer.AutoGenerateColumns = false;
             this.dgInvoicer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgInvoicer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgInvoicer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgInvoicer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {            
             this.invoiceIDDataGridViewTextBoxColumn,
             this.SNo,
             this.Product,
@@ -896,7 +897,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
+            this.mnuFile,
+            this.mnuCreateNew,
             this.printToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -904,28 +906,35 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
+            // mnuFile
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.invoiceListToolStripMenuItem,
-            this.clientListToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuInvoiceList,
+            this.mnuClientList});
+            this.mnuFile.Name = "mnuFile";
+            this.mnuFile.Size = new System.Drawing.Size(37, 20);
+            this.mnuFile.Text = "File";
             // 
-            // invoiceListToolStripMenuItem
+            // mnuInvoiceList
             // 
-            this.invoiceListToolStripMenuItem.Name = "invoiceListToolStripMenuItem";
-            this.invoiceListToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.invoiceListToolStripMenuItem.Text = "Invoice List";
-            this.invoiceListToolStripMenuItem.Click += new System.EventHandler(this.invoiceListToolStripMenuItem_Click);
+            this.mnuInvoiceList.Name = "mnuInvoiceList";
+            this.mnuInvoiceList.Size = new System.Drawing.Size(133, 22);
+            this.mnuInvoiceList.Text = "Invoice List";
+            this.mnuInvoiceList.Click += new System.EventHandler(this.invoiceListToolStripMenuItem_Click);
             // 
-            // clientListToolStripMenuItem
+            // mnuClientList
             // 
-            this.clientListToolStripMenuItem.Name = "clientListToolStripMenuItem";
-            this.clientListToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.clientListToolStripMenuItem.Text = "Client List";
-            this.clientListToolStripMenuItem.Click += new System.EventHandler(this.clientListToolStripMenuItem_Click);
+            this.mnuClientList.Name = "mnuClientList";
+            this.mnuClientList.Size = new System.Drawing.Size(133, 22);
+            this.mnuClientList.Text = "Client List";
+            this.mnuClientList.Click += new System.EventHandler(this.clientListToolStripMenuItem_Click);
+            // 
+            // mnuCreateNew
+            // 
+            this.mnuCreateNew.Name = "mnuCreateNew";
+            this.mnuCreateNew.Size = new System.Drawing.Size(80, 20);
+            this.mnuCreateNew.Text = "Create New";
+            this.mnuCreateNew.Click += new System.EventHandler(this.mnuCreateNew_Click);
             // 
             // printToolStripMenuItem
             // 
@@ -1034,13 +1043,12 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.BindingSource clientBindingSource;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuFile;
         private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem invoiceListToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clientListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuInvoiceList;
+        private System.Windows.Forms.ToolStripMenuItem mnuClientList;
         private InvoicerDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
         private System.Windows.Forms.BindingSource productBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn invoiceIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
@@ -1055,5 +1063,7 @@
         internal System.Windows.Forms.Label label19;
         internal System.Windows.Forms.TextBox txtHSNCode;
         internal System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ToolStripMenuItem mnuCreateNew;
+        private System.Windows.Forms.DataGridViewTextBoxColumn invoiceIDDataGridViewTextBoxColumn;
     }
 }
