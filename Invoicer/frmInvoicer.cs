@@ -172,7 +172,7 @@ namespace Invoicer
                 string HSNCode = this.txtHSNCode.Text != "" ? this.txtHSNCode.Text : null;
                 string GSTIN = this.txtGSTIN.Text != "" ? this.txtGSTIN.Text : null;
                 string StateCode = this.txtStateCode.Text != "" ? this.txtStateCode.Text : null;
-
+                string DCNo = this.txtDCNo.Text != "" ? this.txtDCNo.Text : null;
                 InvoicerDataSetTableAdapters.LineItemTableAdapter objData = new InvoicerDataSetTableAdapters.LineItemTableAdapter();
 
                 DataTable dtLineItem = (DataTable)((DataView)lineItemBindingSource.List).Table;
@@ -192,8 +192,9 @@ namespace Invoicer
                         return 0;
                     }
                 }
-
-                return objInvoice.Insert(intClientID, InvoiceDate, Discount, CGST, SGST, IGST, 0, LineAmount, SubTotal,TotalAmount, TaxAmount, AddressFlag, null, OrderNo, DCNoDate, OrderDate, GSTIN, StateCode);
+                return objInvoice.Insert(intClientID, InvoiceDate, Discount, CGST, SGST, IGST, 0,
+                    LineAmount, SubTotal,TotalAmount, TaxAmount, AddressFlag, null, OrderNo, DCNoDate, 
+                    OrderDate, GSTIN, StateCode, DCNo);
             }
             catch (Exception excLocal)
             {
@@ -262,7 +263,7 @@ namespace Invoicer
                 //InvoicerDataSetTableAdapters.ClientTableAdapter objClient = new InvoicerDataSetTableAdapters.ClientTableAdapter();
 
                 InvoicerDataSetTableAdapters.InvoiceTableAdapter objInvoice = new InvoicerDataSetTableAdapters.InvoiceTableAdapter();
-
+                InvoicerDataSetTableAdapters.LineItemTableAdapter objLineItem = new InvoicerDataSetTableAdapters.LineItemTableAdapter();
                 dsInvoicer = new DataSet();
                 DataTable dtInvoice = objInvoice.GetDataByID(intInvoiceNo);
                 if (dtInvoice.Rows.Count > 0)
@@ -290,7 +291,7 @@ namespace Invoicer
                         txtTotalDiscount.Text = drInvoice["SubTotal"].ToString();
                         txtTotalAmount.Text = drInvoice["TotalAmount"].ToString();
 
-                        InvoicerDataSetTableAdapters.LineItemTableAdapter objLineItem = new InvoicerDataSetTableAdapters.LineItemTableAdapter();
+                        
                         DataTable dtLineItem = objLineItem.GetDataByID(intInvoiceNo);
                         txtHSNCode.Text = dtLineItem.Rows[0]["HSNCode"].ToString();
                         dgInvoicer.DataSource = dtLineItem;
@@ -319,8 +320,16 @@ namespace Invoicer
                     txtTotalAmount.Text = "0";
 
                     //DataTable dtLineItem = objLineItem.GetDataByID(0);
+                    lineItemBindingSource.DataSource = objLineItem.GetDataByID(0).AsDataView();
                     dgInvoicer.DataSource = lineItemBindingSource;
                     dgInvoicer.Refresh();
+                    //this.invoicerDataSetBindingSource = objLineItem.GetDataByID(0);
+                    //BindingSource DT = (BindingSource)lineItemBindingSource.DataSource;
+                    //if (DT != null)
+                    //    ((DataView)DT.List).Clear();
+                    //this.lineItemBindingSource = this.invoicerDataSetBindingSource;
+                    //this.lineItemBindingSource.DataMember = "LineItem";
+                   
                     //dgInvoicer.Update();
                 }
             }

@@ -71,7 +71,7 @@ namespace Invoicer
                     {
                         Directory.CreateDirectory(strReportOutputPath);
                     }
-                    strFileName = "Invoice_" + intInvoiceid + DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + ".pdf";
+                    strFileName = "Invoice_" + intInvoiceid + "_"+ DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + ".pdf";
 
                     if (UpdatePDFFiles(strReportOutputPath + strFileName, intInvoiceid))
                     {
