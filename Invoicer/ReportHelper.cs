@@ -38,7 +38,7 @@ namespace Invoicer
                     //Create a new Report Document object
                     rptDoc = new ReportDocument();
                     rptDoc.Load(strSourceRptPath + "rptInvoiceDetails.rpt");
-
+                   
                     //DbConnectionStringBuilder builder = new DbConnectionStringBuilder();
                     //Invoicer.Properties.Settings objsettings = new Properties.Settings();
 
@@ -55,15 +55,17 @@ namespace Invoicer
 
                     //SetReportLogon(rptDoc, "RXP", null);
                     rptDoc.SetParameterValue("InvoiceID", intInvoiceid);
+                    //rptDoc.SetParameterValue("ADDRESS", ConfigurationManager.AppSettings["ADDRESS"].ToString());
                     // Stream objstream = rptDoc.ExportToStream(ExportFormatType.PortableDocFormat);
-                    
+
                     dsInvoicer.Tables.Add(objClient.GetDataByID(Convert.ToInt32(dtInvoice.Rows[0]["ClientID"].ToString())));
                     dsInvoicer.Tables.Add(dtInvoice);
                     dsInvoicer.Tables.Add(objLineItem.GetDataByID(intInvoiceid));
 
                     rptDoc.SetDataSource(dsInvoicer);
                     //strReportOutputPath = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase.ToString()).ToString() + @"\PDFReports\";//ConfigurationManager.AppSettings["ExportPDFPath"].ToString();
-                    strReportOutputPath = System.IO.Path.GetDirectoryName(ConfigurationManager.AppSettings["InvoicePDFPath"].ToString()) + @"\" + strClientName;
+                    strClientName = dsInvoicer.Tables["Client"].Rows[0]["ClientName"].ToString();
+                    strReportOutputPath = System.IO.Path.GetDirectoryName(ConfigurationManager.AppSettings["InvoicePDFPath"].ToString()) + @"\" + strClientName + @"\" ;
                     strReportOutputPath = strReportOutputPath.Replace(@"file:\", "");
 
                     //strReportOutputPath = strReportOutputPath + @"\";
@@ -71,7 +73,8 @@ namespace Invoicer
                     {
                         Directory.CreateDirectory(strReportOutputPath);
                     }
-                    strFileName = "Invoice_" + intInvoiceid + "_"+ DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + ".pdf";
+                    string strInvNo = dtInvoice.Rows[0]["InvoiceNo"].ToString().PadLeft(3, '0');
+                    strFileName = "Invoice_" + strInvNo + "_" + DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + ".pdf";
 
                     if (UpdatePDFFiles(strReportOutputPath + strFileName, intInvoiceid))
                     {

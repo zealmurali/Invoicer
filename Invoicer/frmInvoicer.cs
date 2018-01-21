@@ -8,17 +8,17 @@ namespace Invoicer
     public partial class frmInvoicer : Form
     {
         public string strClientName = "";
-        private int intInvoiceNo;
+        private int intInvoiceID;
 
         public frmInvoicer()
         {
             InitializeComponent();
         }
 
-        public frmInvoicer(int intInvoiceNo)
+        public frmInvoicer(int intInvoiceID)
         {
             // TODO: Complete member initialization
-            this.intInvoiceNo = intInvoiceNo;
+            this.intInvoiceID = intInvoiceID;
             InitializeComponent();
         }
 
@@ -97,7 +97,8 @@ namespace Invoicer
                     {
                         if (txtInvoiceNo.Text != "")
                         {
-                            if (ReportHelper.GeneratePDFReport(Convert.ToInt32(txtInvoiceNo.Text), cmbClient.SelectedText.ToString()))
+                            string strClient = ((InvoicerDataSet.ClientRow)((DataRowView)cmbClient.SelectedItem).Row).ClientName;
+                            if (ReportHelper.GeneratePDFReport(Convert.ToInt32(txtInvoiceID.Text), strClient))
                             {
                                 //DisplayData(Convert.ToInt32(txtInvoiceNo.Text));
                                 InitInvoiceForm();
@@ -124,12 +125,21 @@ namespace Invoicer
             DateTime? OrderDate = null;
             DateTime? DCNoDate = null;
             int intInvoiceID = 0;
+            int intInvoiceNo = 0;
+            bool blnEditFlag = false;
             try
             {
                 InvoicerDataSetTableAdapters.InvoiceTableAdapter objInvoice = new InvoicerDataSetTableAdapters.InvoiceTableAdapter();
 
-                intInvoiceID = Convert.ToInt32(this.txtInvoiceNo.Text);
+                intInvoiceID = this.txtDiscount.Text != "" ? Convert.ToInt32(this.txtInvoiceID.Text) : 0;
 
+                DataTable dtInvoice = objInvoice.GetDataByID(intInvoiceID);
+
+                if (dtInvoice.Rows.Count > 0)
+                {
+                    blnEditFlag = true;
+                }
+                intInvoiceNo = Convert.ToInt32(this.txtInvoiceNo.Text);
                 int intClientID = Convert.ToInt32(cmbClient.SelectedValue); //Convert.ToInt32(txtClientID.Text);
                 if (this.dtInvoiceDate.Text != "")
                 {
@@ -173,9 +183,15 @@ namespace Invoicer
                 string GSTIN = this.txtGSTIN.Text != "" ? this.txtGSTIN.Text : null;
                 string StateCode = this.txtStateCode.Text != "" ? this.txtStateCode.Text : null;
                 string DCNo = this.txtDCNo.Text != "" ? this.txtDCNo.Text : null;
-                InvoicerDataSetTableAdapters.LineItemTableAdapter objData = new InvoicerDataSetTableAdapters.LineItemTableAdapter();
 
-                DataTable dtLineItem = (DataTable)((DataView)lineItemBindingSource.List).Table;
+                InvoicerDataSetTableAdapters.LineItemTableAdapter objData = new InvoicerDataSetTableAdapters.LineItemTableAdapter();
+                DataTable dtLineItem = null;
+                if (blnEditFlag)
+                {
+                    objData.DeleteLineItem(intInvoiceID);
+                }
+
+                dtLineItem = (DataTable)((DataView)lineItemBindingSource.List).Table;
 
                 if (!(dtLineItem.HasErrors))
                 {
@@ -192,9 +208,19 @@ namespace Invoicer
                         return 0;
                     }
                 }
-                return objInvoice.Insert(intClientID, InvoiceDate, Discount, CGST, SGST, IGST, 0,
-                    LineAmount, SubTotal,TotalAmount, TaxAmount, AddressFlag, null, OrderNo, DCNoDate, 
+                if (blnEditFlag)
+                {
+                    objInvoice.UpdateInvoice(intInvoiceNo,intClientID, InvoiceDate, Decimal.Parse(Discount.ToString()), Decimal.Parse(CGST.ToString()), Decimal.Parse(SGST.ToString()), Decimal.Parse(IGST.ToString()), 0,
+                    LineAmount, SubTotal, TotalAmount, TaxAmount, AddressFlag, null, OrderNo, DCNoDate,
+                    OrderDate, GSTIN, StateCode, DCNo, intInvoiceID);
+                    return intInvoiceID;
+                }
+                else
+                {
+                    return objInvoice.Insert(intInvoiceNo,intClientID, InvoiceDate, Discount, CGST, SGST, IGST, 0,
+                    LineAmount, SubTotal, TotalAmount, TaxAmount, AddressFlag, null, OrderNo, DCNoDate,
                     OrderDate, GSTIN, StateCode, DCNo);
+                }
             }
             catch (Exception excLocal)
             {
@@ -231,21 +257,24 @@ namespace Invoicer
 
                 //this.productBindingSource.DataSource = objProduct.GetData();
 
-                if (intInvoiceNo > 0)
+                if (intInvoiceID > 0)
                 {
-                    DisplayData(intInvoiceNo);
+                    DisplayData(intInvoiceID);
                 }
                 else
                 {
                     InvoicerDataSetTableAdapters.InvoiceTableAdapter objInvoice = new InvoicerDataSetTableAdapters.InvoiceTableAdapter();
-                    if (objInvoice.GetNextInvoiceID() != null)
+                    DataTable dtNextInvoiceData = objInvoice.GetNextInvoiceID();
+                    if (dtNextInvoiceData != null)
                     {
-                        txtInvoiceNo.Text = objInvoice.GetNextInvoiceID().ToString().PadLeft(3, '0');
+                        txtInvoiceNo.Text = dtNextInvoiceData.Rows[0]["InvoiceNo"].ToString().PadLeft(3, '0');
+                        txtInvoiceID.Text = dtNextInvoiceData.Rows[0]["InvoiceID"].ToString();
                         DisplayData(0);
                     }
                     else
                     {
                         txtInvoiceNo.Text = "001";
+                        txtInvoiceID.Text = "1";
                     }
                 }
             }
@@ -255,7 +284,7 @@ namespace Invoicer
             }
         }
 
-        public void DisplayData(int intInvoiceNo)
+        public void DisplayData(int intInvoiceID)
         {
             DataSet dsInvoicer = null;
             try
@@ -265,7 +294,7 @@ namespace Invoicer
                 InvoicerDataSetTableAdapters.InvoiceTableAdapter objInvoice = new InvoicerDataSetTableAdapters.InvoiceTableAdapter();
                 InvoicerDataSetTableAdapters.LineItemTableAdapter objLineItem = new InvoicerDataSetTableAdapters.LineItemTableAdapter();
                 dsInvoicer = new DataSet();
-                DataTable dtInvoice = objInvoice.GetDataByID(intInvoiceNo);
+                DataTable dtInvoice = objInvoice.GetDataByID(intInvoiceID);
                 if (dtInvoice.Rows.Count > 0)
                 {
                     foreach (DataRow drInvoice in dtInvoice.Rows)
@@ -274,7 +303,8 @@ namespace Invoicer
                         //InvoiceID, InvoicePath, LineAmount, OrderDate, OrderNo, SGST, StateCode, 
                         //SubTotal, TaxAmount, TotalAmount FROM Invoice WHERE (InvoiceID = ?)
                         cmbClient.SelectedValue = drInvoice["ClientID"].ToString();
-                        txtInvoiceNo.Text = drInvoice["InvoiceID"].ToString().PadLeft(3, '0');
+                        txtInvoiceID.Text = drInvoice["InvoiceID"].ToString();
+                        txtInvoiceNo.Text = drInvoice["InvoiceNo"].ToString().PadLeft(3, '0');
                         dtInvoiceDate.Text = drInvoice["InvoiceDate"].ToString();
                         dtDCDate.Text = drInvoice["DCNoDate"].ToString();
                         dtRefDate.Text = drInvoice["OrderDate"].ToString();
@@ -292,9 +322,17 @@ namespace Invoicer
                         txtTotalAmount.Text = drInvoice["TotalAmount"].ToString();
 
                         
-                        DataTable dtLineItem = objLineItem.GetDataByID(intInvoiceNo);
-                        txtHSNCode.Text = dtLineItem.Rows[0]["HSNCode"].ToString();
-                        dgInvoicer.DataSource = dtLineItem;
+                        DataTable dtLineItem = objLineItem.GetDataByID(intInvoiceID);
+                        lineItemBindingSource.DataSource = dtLineItem.AsDataView();
+                        if (dtLineItem.Rows.Count > 0)
+                        {
+                            txtHSNCode.Text = dtLineItem.Rows[0]["HSNCode"].ToString();
+                        }
+                        else
+                        {
+                            txtHSNCode.Text = ConfigurationManager.AppSettings["HSNCODE"].ToString();
+                        }
+                        dgInvoicer.DataSource = lineItemBindingSource;
                         dgInvoicer.Refresh();
                     }
                 }
@@ -399,7 +437,7 @@ namespace Invoicer
             {
                 if (txtInvoiceNo.Text != "")
                 {
-                    if (ReportHelper.GeneratePDFReport(Convert.ToInt32(txtInvoiceNo.Text), cmbClient.SelectedText.ToString()))
+                    if (ReportHelper.GeneratePDFReport(Convert.ToInt32(txtInvoiceID.Text), cmbClient.SelectedText.ToString()))
                     {
                         MessageBox.Show(this, "Invoice has been printed successfully", "Invoicer");
                     }
@@ -501,7 +539,8 @@ namespace Invoicer
             {
                 if (txtInvoiceNo.Text != "")
                 {
-                    if (ReportHelper.GeneratePDFReport(Convert.ToInt32(txtInvoiceNo.Text), cmbClient.SelectedText.ToString()))
+                   // string strClient = ((InvoicerDataSet.ClientRow)((DataRowView)cmbClient.SelectedItem).Row).ClientName;
+                    if (ReportHelper.GeneratePDFReport(Convert.ToInt32(txtInvoiceID.Text), cmbClient.SelectedText.ToString()))
                     {
                         MessageBox.Show(this, "Invoice has been printed successfully", "Invoicer");
                     }
@@ -517,7 +556,7 @@ namespace Invoicer
         {
             try
             {
-                intInvoiceNo = 0;
+                intInvoiceID = 0;
                 InitInvoiceForm();
 
             }

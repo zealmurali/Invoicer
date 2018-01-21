@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicer", "Invoicer\Invoicer.csproj", "{6B8A4BFE-F9CA-456D-9E34-02041E9831C2}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "InvoicerMSI", "InvoicerMSI\InvoicerMSI\InvoicerMSI.vdproj", "{EF0FCB16-6196-48C4-A516-79CE7F045E2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{6B8A4BFE-F9CA-456D-9E34-02041E9831C2}.Debug|x86.Build.0 = Debug|x86
 		{6B8A4BFE-F9CA-456D-9E34-02041E9831C2}.Release|x86.ActiveCfg = Release|x86
 		{6B8A4BFE-F9CA-456D-9E34-02041E9831C2}.Release|x86.Build.0 = Release|x86
+		{EF0FCB16-6196-48C4-A516-79CE7F045E2E}.Debug|x86.ActiveCfg = Debug
+		{EF0FCB16-6196-48C4-A516-79CE7F045E2E}.Debug|x86.Build.0 = Debug
+		{EF0FCB16-6196-48C4-A516-79CE7F045E2E}.Release|x86.ActiveCfg = Release
+		{EF0FCB16-6196-48C4-A516-79CE7F045E2E}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

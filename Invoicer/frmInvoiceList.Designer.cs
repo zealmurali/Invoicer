@@ -35,18 +35,19 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.invoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.invoicerDataSet = new Invoicer.InvoicerDataSet();
             this.dtToDate = new System.Windows.Forms.DateTimePicker();
             this.dtFromDate = new System.Windows.Forms.DateTimePicker();
             this.Label6 = new System.Windows.Forms.Label();
             this.Label5 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
-            this.invoiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.invoicerDataSet = new Invoicer.InvoicerDataSet();
             this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clientTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ClientTableAdapter();
             this.invoiceTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.InvoiceTableAdapter();
-            this.InvoiceID = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.InvoiceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,6 +73,7 @@
             this.dgInvoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgInvoice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.InvoiceID,
+            this.InvoiceNo,
             this.clientIDDataGridViewTextBoxColumn,
             this.ClientName,
             this.InvoiceDate,
@@ -129,6 +131,16 @@
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.closeToolStripMenuItem.Text = "&Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // invoiceBindingSource
+            // 
+            this.invoiceBindingSource.DataMember = "Invoice";
+            this.invoiceBindingSource.DataSource = this.invoicerDataSet;
+            // 
+            // invoicerDataSet
+            // 
+            this.invoicerDataSet.DataSetName = "InvoicerDataSet";
+            this.invoicerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dtToDate
             // 
@@ -190,16 +202,6 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // invoiceBindingSource
-            // 
-            this.invoiceBindingSource.DataMember = "Invoice";
-            this.invoiceBindingSource.DataSource = this.invoicerDataSet;
-            // 
-            // invoicerDataSet
-            // 
-            this.invoicerDataSet.DataSetName = "InvoicerDataSet";
-            this.invoicerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // clientBindingSource
             // 
             this.clientBindingSource.DataMember = "Client";
@@ -216,12 +218,19 @@
             // InvoiceID
             // 
             this.InvoiceID.DataPropertyName = "InvoiceID";
-            this.InvoiceID.HeaderText = "Inv No";
-            this.InvoiceID.LinkColor = System.Drawing.Color.Empty;
+            this.InvoiceID.HeaderText = "InvoiceID";
             this.InvoiceID.Name = "InvoiceID";
             this.InvoiceID.ReadOnly = true;
-            this.InvoiceID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.InvoiceID.Width = 60;
+            this.InvoiceID.Visible = false;
+            // 
+            // InvoiceNo
+            // 
+            this.InvoiceNo.DataPropertyName = "InvoiceNo";
+            this.InvoiceNo.HeaderText = "Inv No";
+            this.InvoiceNo.Name = "InvoiceNo";
+            this.InvoiceNo.ReadOnly = true;
+            this.InvoiceNo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.InvoiceNo.Width = 60;
             // 
             // clientIDDataGridViewTextBoxColumn
             // 
@@ -348,7 +357,8 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.DataGridViewLinkColumn InvoiceID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clientIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientName;
         private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceDate;

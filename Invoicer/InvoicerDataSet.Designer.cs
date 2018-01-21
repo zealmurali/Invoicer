@@ -837,6 +837,8 @@ namespace Invoicer {
             
             private global::System.Data.DataColumn columnDCNo;
             
+            private global::System.Data.DataColumn columnInvoiceNo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public InvoiceDataTable() {
@@ -1040,6 +1042,14 @@ namespace Invoicer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn InvoiceNoColumn {
+                get {
+                    return this.columnInvoiceNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1095,7 +1105,8 @@ namespace Invoicer {
                         double IGST, 
                         string GSTIN, 
                         string StateCode, 
-                        string DCNo) {
+                        string DCNo, 
+                        int InvoiceNo) {
                 InvoiceRow rowInvoiceRow = ((InvoiceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1118,7 +1129,8 @@ namespace Invoicer {
                         IGST,
                         GSTIN,
                         StateCode,
-                        DCNo};
+                        DCNo,
+                        InvoiceNo};
                 rowInvoiceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowInvoiceRow);
                 return rowInvoiceRow;
@@ -1169,6 +1181,7 @@ namespace Invoicer {
                 this.columnGSTIN = base.Columns["GSTIN"];
                 this.columnStateCode = base.Columns["StateCode"];
                 this.columnDCNo = base.Columns["DCNo"];
+                this.columnInvoiceNo = base.Columns["InvoiceNo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1216,6 +1229,8 @@ namespace Invoicer {
                 base.Columns.Add(this.columnStateCode);
                 this.columnDCNo = new global::System.Data.DataColumn("DCNo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDCNo);
+                this.columnInvoiceNo = new global::System.Data.DataColumn("InvoiceNo", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInvoiceNo);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnInvoiceID}, true));
                 this.columnInvoiceID.AutoIncrement = true;
@@ -2603,6 +2618,22 @@ namespace Invoicer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int InvoiceNo {
+                get {
+                    try {
+                        return ((int)(this[this.tableInvoice.InvoiceNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'InvoiceNo\' in table \'Invoice\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableInvoice.InvoiceNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsClientIDNull() {
                 return this.IsNull(this.tableInvoice.ClientIDColumn);
             }
@@ -2839,6 +2870,18 @@ namespace Invoicer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDCNoNull() {
                 this[this.tableInvoice.DCNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsInvoiceNoNull() {
+                return this.IsNull(this.tableInvoice.InvoiceNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetInvoiceNoNull() {
+                this[this.tableInvoice.InvoiceNoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4186,12 +4229,15 @@ namespace Invoicer.InvoicerDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("GSTIN", "GSTIN");
             tableMapping.ColumnMappings.Add("StateCode", "StateCode");
             tableMapping.ColumnMappings.Add("DCNo", "DCNo");
+            tableMapping.ColumnMappings.Add("InvoiceNo", "InvoiceNo");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Invoice` WHERE ((`InvoiceID` = ?) AND ((? = 1 AND `ClientID` IS NULL) OR (`ClientID` = ?)) AND ((? = 1 AND `InvoiceDate` IS NULL) OR (`InvoiceDate` = ?)) AND ((? = 1 AND `Discount` IS NULL) OR (`Discount` = ?)) AND ((? = 1 AND `CGST` IS NULL) OR (`CGST` = ?)) AND ((? = 1 AND `SGST` IS NULL) OR (`SGST` = ?)) AND ((? = 1 AND `IGST` IS NULL) OR (`IGST` = ?)) AND ((? = 1 AND `Freight` IS NULL) OR (`Freight` = ?)) AND ((? = 1 AND `LineAmount` IS NULL) OR (`LineAmount` = ?)) AND ((? = 1 AND `SubTotal` IS NULL) OR (`SubTotal` = ?)) AND ((? = 1 AND `TotalAmount` IS NULL) OR (`TotalAmount` = ?)) AND ((? = 1 AND `TaxAmount` IS NULL) OR (`TaxAmount` = ?)) AND ((? = 1 AND `AddressFlag` IS NULL) OR (`AddressFlag` = ?)) AND ((? = 1 AND `InvoicePath` IS NULL) OR (`InvoicePath` = ?)) AND ((? = 1 AND `OrderNo` IS NULL) OR (`OrderNo` = ?)) AND ((? = 1 AND `DCNoDate` IS NULL) OR (`DCNoDate` = ?)) AND ((? = 1 AND `OrderDate` IS NULL) OR (`OrderDate` = ?)) AND ((? = 1 AND `GSTIN` IS NULL) OR (`GSTIN` = ?)) AND ((? = 1 AND `StateCode` IS NULL) OR (`StateCode` = ?)) AND ((? = 1 AND `DCNo` IS NULL) OR (`DCNo` = ?)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Invoice` WHERE ((`InvoiceID` = ?) AND ((? = 1 AND `InvoiceNo` IS NULL) OR (`InvoiceNo` = ?)) AND ((? = 1 AND `ClientID` IS NULL) OR (`ClientID` = ?)) AND ((? = 1 AND `InvoiceDate` IS NULL) OR (`InvoiceDate` = ?)) AND ((? = 1 AND `Discount` IS NULL) OR (`Discount` = ?)) AND ((? = 1 AND `CGST` IS NULL) OR (`CGST` = ?)) AND ((? = 1 AND `SGST` IS NULL) OR (`SGST` = ?)) AND ((? = 1 AND `IGST` IS NULL) OR (`IGST` = ?)) AND ((? = 1 AND `Freight` IS NULL) OR (`Freight` = ?)) AND ((? = 1 AND `LineAmount` IS NULL) OR (`LineAmount` = ?)) AND ((? = 1 AND `SubTotal` IS NULL) OR (`SubTotal` = ?)) AND ((? = 1 AND `TotalAmount` IS NULL) OR (`TotalAmount` = ?)) AND ((? = 1 AND `TaxAmount` IS NULL) OR (`TaxAmount` = ?)) AND ((? = 1 AND `AddressFlag` IS NULL) OR (`AddressFlag` = ?)) AND ((? = 1 AND `InvoicePath` IS NULL) OR (`InvoicePath` = ?)) AND ((? = 1 AND `OrderNo` IS NULL) OR (`OrderNo` = ?)) AND ((? = 1 AND `DCNoDate` IS NULL) OR (`DCNoDate` = ?)) AND ((? = 1 AND `OrderDate` IS NULL) OR (`OrderDate` = ?)) AND ((? = 1 AND `GSTIN` IS NULL) OR (`GSTIN` = ?)) AND ((? = 1 AND `StateCode` IS NULL) OR (`StateCode` = ?)) AND ((? = 1 AND `DCNo` IS NULL) OR (`DCNo` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_InvoiceID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceID", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_InvoiceNo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceNo", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_InvoiceNo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceNo", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_ClientID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ClientID", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ClientID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ClientID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_InvoiceDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceDate", global::System.Data.DataRowVersion.Original, true, null));
@@ -4232,8 +4278,9 @@ namespace Invoicer.InvoicerDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DCNo", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DCNo", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO `Invoice` (`ClientID`, `InvoiceDate`, `Discount`, `CGST`, `SGST`, `IGST`, `Freight`, `LineAmount`, `SubTotal`, `TotalAmount`, `TaxAmount`, `AddressFlag`, `InvoicePath`, `OrderNo`, `DCNoDate`, `OrderDate`, `GSTIN`, `StateCode`, `DCNo`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `Invoice` (`InvoiceNo`, `ClientID`, `InvoiceDate`, `Discount`, `CGST`, `SGST`, `IGST`, `Freight`, `LineAmount`, `SubTotal`, `TotalAmount`, `TaxAmount`, `AddressFlag`, `InvoicePath`, `OrderNo`, `DCNoDate`, `OrderDate`, `GSTIN`, `StateCode`, `DCNo`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceNo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceNo", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ClientID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ClientID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceDate", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Discount", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Discount", global::System.Data.DataRowVersion.Current, false, null));
@@ -4255,8 +4302,9 @@ namespace Invoicer.InvoicerDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DCNo", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DCNo", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `Invoice` SET `ClientID` = ?, `InvoiceDate` = ?, `Discount` = ?, `CGST` = ?, `SGST` = ?, `IGST` = ?, `Freight` = ?, `LineAmount` = ?, `SubTotal` = ?, `TotalAmount` = ?, `TaxAmount` = ?, `AddressFlag` = ?, `InvoicePath` = ?, `OrderNo` = ?, `DCNoDate` = ?, `OrderDate` = ?, `GSTIN` = ?, `StateCode` = ?, `DCNo` = ? WHERE ((`InvoiceID` = ?) AND ((? = 1 AND `ClientID` IS NULL) OR (`ClientID` = ?)) AND ((? = 1 AND `InvoiceDate` IS NULL) OR (`InvoiceDate` = ?)) AND ((? = 1 AND `Discount` IS NULL) OR (`Discount` = ?)) AND ((? = 1 AND `CGST` IS NULL) OR (`CGST` = ?)) AND ((? = 1 AND `SGST` IS NULL) OR (`SGST` = ?)) AND ((? = 1 AND `IGST` IS NULL) OR (`IGST` = ?)) AND ((? = 1 AND `Freight` IS NULL) OR (`Freight` = ?)) AND ((? = 1 AND `LineAmount` IS NULL) OR (`LineAmount` = ?)) AND ((? = 1 AND `SubTotal` IS NULL) OR (`SubTotal` = ?)) AND ((? = 1 AND `TotalAmount` IS NULL) OR (`TotalAmount` = ?)) AND ((? = 1 AND `TaxAmount` IS NULL) OR (`TaxAmount` = ?)) AND ((? = 1 AND `AddressFlag` IS NULL) OR (`AddressFlag` = ?)) AND ((? = 1 AND `InvoicePath` IS NULL) OR (`InvoicePath` = ?)) AND ((? = 1 AND `OrderNo` IS NULL) OR (`OrderNo` = ?)) AND ((? = 1 AND `DCNoDate` IS NULL) OR (`DCNoDate` = ?)) AND ((? = 1 AND `OrderDate` IS NULL) OR (`OrderDate` = ?)) AND ((? = 1 AND `GSTIN` IS NULL) OR (`GSTIN` = ?)) AND ((? = 1 AND `StateCode` IS NULL) OR (`StateCode` = ?)) AND ((? = 1 AND `DCNo` IS NULL) OR (`DCNo` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `Invoice` SET `InvoiceNo` = ?, `ClientID` = ?, `InvoiceDate` = ?, `Discount` = ?, `CGST` = ?, `SGST` = ?, `IGST` = ?, `Freight` = ?, `LineAmount` = ?, `SubTotal` = ?, `TotalAmount` = ?, `TaxAmount` = ?, `AddressFlag` = ?, `InvoicePath` = ?, `OrderNo` = ?, `DCNoDate` = ?, `OrderDate` = ?, `GSTIN` = ?, `StateCode` = ?, `DCNo` = ? WHERE ((`InvoiceID` = ?) AND ((? = 1 AND `InvoiceNo` IS NULL) OR (`InvoiceNo` = ?)) AND ((? = 1 AND `ClientID` IS NULL) OR (`ClientID` = ?)) AND ((? = 1 AND `InvoiceDate` IS NULL) OR (`InvoiceDate` = ?)) AND ((? = 1 AND `Discount` IS NULL) OR (`Discount` = ?)) AND ((? = 1 AND `CGST` IS NULL) OR (`CGST` = ?)) AND ((? = 1 AND `SGST` IS NULL) OR (`SGST` = ?)) AND ((? = 1 AND `IGST` IS NULL) OR (`IGST` = ?)) AND ((? = 1 AND `Freight` IS NULL) OR (`Freight` = ?)) AND ((? = 1 AND `LineAmount` IS NULL) OR (`LineAmount` = ?)) AND ((? = 1 AND `SubTotal` IS NULL) OR (`SubTotal` = ?)) AND ((? = 1 AND `TotalAmount` IS NULL) OR (`TotalAmount` = ?)) AND ((? = 1 AND `TaxAmount` IS NULL) OR (`TaxAmount` = ?)) AND ((? = 1 AND `AddressFlag` IS NULL) OR (`AddressFlag` = ?)) AND ((? = 1 AND `InvoicePath` IS NULL) OR (`InvoicePath` = ?)) AND ((? = 1 AND `OrderNo` IS NULL) OR (`OrderNo` = ?)) AND ((? = 1 AND `DCNoDate` IS NULL) OR (`DCNoDate` = ?)) AND ((? = 1 AND `OrderDate` IS NULL) OR (`OrderDate` = ?)) AND ((? = 1 AND `GSTIN` IS NULL) OR (`GSTIN` = ?)) AND ((? = 1 AND `StateCode` IS NULL) OR (`StateCode` = ?)) AND ((? = 1 AND `DCNo` IS NULL) OR (`DCNo` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceNo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceNo", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ClientID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ClientID", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceDate", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Discount", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Discount", global::System.Data.DataRowVersion.Current, false, null));
@@ -4277,6 +4325,8 @@ namespace Invoicer.InvoicerDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("StateCode", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "StateCode", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DCNo", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DCNo", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_InvoiceID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceID", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_InvoiceNo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceNo", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_InvoiceNo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceNo", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_ClientID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ClientID", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ClientID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ClientID", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_InvoiceDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceDate", global::System.Data.DataRowVersion.Original, true, null));
@@ -4327,23 +4377,25 @@ namespace Invoicer.InvoicerDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[5];
+            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[6];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        InvoiceID, ClientID, InvoiceDate, Discount, CGST, SGST, IGST, Freig" +
-                "ht, LineAmount, SubTotal, TotalAmount, TaxAmount, AddressFlag, InvoicePath, Orde" +
-                "rNo, DCNoDate, OrderDate, GSTIN, StateCode, DCNo\r\nFROM            Invoice";
+            this._commandCollection[0].CommandText = "SELECT        InvoiceID,  InvoiceNo, ClientID, InvoiceDate, Discount, CGST, SGST," +
+                " IGST, Freight, LineAmount, SubTotal, TotalAmount, TaxAmount, AddressFlag, Invoi" +
+                "cePath, OrderNo, DCNoDate, OrderDate, GSTIN, StateCode, DCNo\r\nFROM            In" +
+                "voice";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "SELECT AddressFlag, CGST, ClientID, DCNo, DCNoDate, Discount, Freight, GSTIN, IGS" +
-                "T, InvoiceDate, InvoiceID, InvoicePath, LineAmount, OrderDate, OrderNo, SGST, St" +
-                "ateCode, SubTotal, TaxAmount, TotalAmount FROM Invoice WHERE (InvoiceID = ?)";
+                "T, InvoiceDate, InvoiceID, InvoiceNo, InvoicePath, LineAmount, OrderDate, OrderN" +
+                "o, SGST, StateCode, SubTotal, TaxAmount, TotalAmount FROM Invoice WHERE (Invoice" +
+                "ID = ?)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceID", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[2] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT        Invoice.InvoiceID, Invoice.InvoiceDate, Invoice.Discount, Invoice.CGST, Invoice.SGST, Invoice.IGST, Invoice.Freight, Invoice.LineAmount, Invoice.SubTotal, Invoice.TaxAmount, Invoice.TotalAmount, Invoice.AddressFlag, 
+            this._commandCollection[2].CommandText = @"SELECT        Invoice.InvoiceID, Invoice.InvoiceNo, Invoice.InvoiceDate, Invoice.Discount, Invoice.CGST, Invoice.SGST, Invoice.IGST, Invoice.Freight, Invoice.LineAmount, Invoice.SubTotal, Invoice.TaxAmount, Invoice.TotalAmount, Invoice.AddressFlag, 
                          Invoice.InvoicePath, Invoice.OrderNo, Invoice.DCNoDate, Invoice.OrderDate, Client.ClientName, Invoice.GSTIN, Invoice.StateCode
 FROM            (Invoice INNER JOIN
                          Client ON Invoice.ClientID = Client.ClientID)
@@ -4354,16 +4406,41 @@ ORDER BY Invoice.InvoiceID DESC";
             this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceDate1", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceDate", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        TOP 1 InvoiceID + 1 AS Expr1\r\nFROM            Invoice\r\nORDER BY Inv" +
-                "oiceID DESC";
+            this._commandCollection[3].CommandText = "SELECT        TOP 1 InvoiceNo + 1 AS InvoiceNo, InvoiceID + 1 AS InvoiceID \r\nFROM" +
+                "            Invoice\r\nORDER BY InvoiceID DESC";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "UPDATE       Invoice\r\nSET                InvoicePath = ?\r\nWHERE        (InvoiceID" +
-                " = ?)";
+            this._commandCollection[4].CommandText = @"UPDATE `Invoice` SET `InvoiceNo` = ?, `ClientID` = ?, `InvoiceDate` = ?, `Discount` = ?, `CGST` = ?, `SGST` = ?, `IGST` = ?, `Freight` = ?, `LineAmount` = ?, `SubTotal` = ?, `TotalAmount` = ?, `TaxAmount` = ?, `AddressFlag` = ?, `InvoicePath` = ?, `OrderNo` = ?, `DCNoDate` = ?, `OrderDate` = ?, `GSTIN` = ?, `StateCode` = ?, `DCNo` = ? WHERE (`InvoiceID` = ?)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceNo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceNo", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ClientID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ClientID", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceDate", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Discount", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "Discount", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CGST", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "CGST", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("SGST", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "SGST", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IGST", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "IGST", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Freight", global::System.Data.OleDb.OleDbType.Currency, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(0)), "Freight", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LineAmount", global::System.Data.OleDb.OleDbType.Currency, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(0)), "LineAmount", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("SubTotal", global::System.Data.OleDb.OleDbType.Currency, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(0)), "SubTotal", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TotalAmount", global::System.Data.OleDb.OleDbType.Currency, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(0)), "TotalAmount", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TaxAmount", global::System.Data.OleDb.OleDbType.Currency, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(0)), "TaxAmount", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("AddressFlag", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AddressFlag", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoicePath", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoicePath", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("OrderNo", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "OrderNo", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DCNoDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DCNoDate", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("OrderDate", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "OrderDate", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GSTIN", global::System.Data.OleDb.OleDbType.WChar, 15, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GSTIN", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("StateCode", global::System.Data.OleDb.OleDbType.WChar, 5, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "StateCode", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DCNo", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DCNo", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_InvoiceID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceID", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[5] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "UPDATE       Invoice\r\nSET                InvoicePath = ?\r\nWHERE        (InvoiceID" +
+                " = ?)";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoicePath", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoicePath", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_InvoiceID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceID", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4467,6 +4544,17 @@ ORDER BY Invoice.InvoiceID DESC";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual InvoicerDataSet.InvoiceDataTable GetNextInvoiceID() {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            InvoicerDataSet.InvoiceDataTable dataTable = new InvoicerDataSet.InvoiceDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(InvoicerDataSet.InvoiceDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
@@ -4499,6 +4587,7 @@ ORDER BY Invoice.InvoiceID DESC";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
         public virtual int Delete(
                     int Original_InvoiceID, 
+                    int Original_InvoiceNo, 
                     int Original_ClientID, 
                     global::System.Nullable<global::System.DateTime> Original_InvoiceDate, 
                     global::System.Nullable<double> Original_Discount, 
@@ -4520,144 +4609,146 @@ ORDER BY Invoice.InvoiceID DESC";
                     string Original_DCNo) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_InvoiceID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_ClientID));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_InvoiceNo));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_ClientID));
             if ((Original_InvoiceDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_InvoiceDate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Discount.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((double)(Original_Discount.Value));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_InvoiceDate.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((Original_CGST.HasValue == true)) {
+            if ((Original_Discount.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((double)(Original_CGST.Value));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((double)(Original_Discount.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((Original_SGST.HasValue == true)) {
+            if ((Original_CGST.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((double)(Original_SGST.Value));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((double)(Original_CGST.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((Original_IGST.HasValue == true)) {
+            if ((Original_SGST.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((double)(Original_IGST.Value));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((double)(Original_SGST.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((Original_Freight.HasValue == true)) {
+            if ((Original_IGST.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((decimal)(Original_Freight.Value));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((double)(Original_IGST.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((Original_LineAmount.HasValue == true)) {
+            if ((Original_Freight.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[16].Value = ((decimal)(Original_LineAmount.Value));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((decimal)(Original_Freight.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            if ((Original_SubTotal.HasValue == true)) {
+            if ((Original_LineAmount.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[18].Value = ((decimal)(Original_SubTotal.Value));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((decimal)(Original_LineAmount.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            if ((Original_TotalAmount.HasValue == true)) {
+            if ((Original_SubTotal.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[20].Value = ((decimal)(Original_TotalAmount.Value));
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((decimal)(Original_SubTotal.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
-            if ((Original_TaxAmount.HasValue == true)) {
+            if ((Original_TotalAmount.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[22].Value = ((decimal)(Original_TaxAmount.Value));
+                this.Adapter.DeleteCommand.Parameters[22].Value = ((decimal)(Original_TotalAmount.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
-            this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[24].Value = ((bool)(Original_AddressFlag));
-            if ((Original_InvoicePath == null)) {
-                this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[26].Value = global::System.DBNull.Value;
+            if ((Original_TaxAmount.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[24].Value = ((decimal)(Original_TaxAmount.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[26].Value = ((string)(Original_InvoicePath));
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
-            if ((Original_OrderNo == null)) {
+            this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[26].Value = ((bool)(Original_AddressFlag));
+            if ((Original_InvoicePath == null)) {
                 this.Adapter.DeleteCommand.Parameters[27].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[28].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[27].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[28].Value = ((string)(Original_OrderNo));
+                this.Adapter.DeleteCommand.Parameters[28].Value = ((string)(Original_InvoicePath));
             }
-            if ((Original_DCNoDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[30].Value = ((System.DateTime)(Original_DCNoDate.Value));
-            }
-            else {
+            if ((Original_OrderNo == null)) {
                 this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[30].Value = global::System.DBNull.Value;
             }
-            if ((Original_OrderDate.HasValue == true)) {
+            else {
+                this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[30].Value = ((string)(Original_OrderNo));
+            }
+            if ((Original_DCNoDate.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[31].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[32].Value = ((System.DateTime)(Original_OrderDate.Value));
+                this.Adapter.DeleteCommand.Parameters[32].Value = ((System.DateTime)(Original_DCNoDate.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[31].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[32].Value = global::System.DBNull.Value;
             }
-            if ((Original_GSTIN == null)) {
+            if ((Original_OrderDate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[33].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[34].Value = ((System.DateTime)(Original_OrderDate.Value));
+            }
+            else {
                 this.Adapter.DeleteCommand.Parameters[33].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[34].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.DeleteCommand.Parameters[33].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[34].Value = ((string)(Original_GSTIN));
-            }
-            if ((Original_StateCode == null)) {
+            if ((Original_GSTIN == null)) {
                 this.Adapter.DeleteCommand.Parameters[35].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[36].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[35].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[36].Value = ((string)(Original_StateCode));
+                this.Adapter.DeleteCommand.Parameters[36].Value = ((string)(Original_GSTIN));
             }
-            if ((Original_DCNo == null)) {
+            if ((Original_StateCode == null)) {
                 this.Adapter.DeleteCommand.Parameters[37].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[38].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[37].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[38].Value = ((string)(Original_DCNo));
+                this.Adapter.DeleteCommand.Parameters[38].Value = ((string)(Original_StateCode));
+            }
+            if ((Original_DCNo == null)) {
+                this.Adapter.DeleteCommand.Parameters[39].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[40].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[39].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[40].Value = ((string)(Original_DCNo));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4680,6 +4771,7 @@ ORDER BY Invoice.InvoiceID DESC";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
         public virtual int Insert(
+                    int InvoiceNo, 
                     int ClientID, 
                     global::System.Nullable<global::System.DateTime> InvoiceDate, 
                     global::System.Nullable<double> Discount, 
@@ -4699,109 +4791,110 @@ ORDER BY Invoice.InvoiceID DESC";
                     string GSTIN, 
                     string StateCode, 
                     string DCNo) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ClientID));
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(InvoiceNo));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(ClientID));
             if ((InvoiceDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(InvoiceDate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((Discount.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((double)(Discount.Value));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(InvoiceDate.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((CGST.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((double)(CGST.Value));
+            if ((Discount.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((double)(Discount.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((SGST.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((double)(SGST.Value));
+            if ((CGST.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((double)(CGST.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((IGST.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((double)(IGST.Value));
+            if ((SGST.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((double)(SGST.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((Freight.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(Freight.Value));
+            if ((IGST.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((double)(IGST.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((LineAmount.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(LineAmount.Value));
+            if ((Freight.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(Freight.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((SubTotal.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(SubTotal.Value));
+            if ((LineAmount.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(LineAmount.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((TotalAmount.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(TotalAmount.Value));
+            if ((SubTotal.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(SubTotal.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((TaxAmount.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(TaxAmount.Value));
+            if ((TotalAmount.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(TotalAmount.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(AddressFlag));
-            if ((InvoicePath == null)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+            if ((TaxAmount.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(TaxAmount.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(InvoicePath));
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((OrderNo == null)) {
+            this.Adapter.InsertCommand.Parameters[12].Value = ((bool)(AddressFlag));
+            if ((InvoicePath == null)) {
                 this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(OrderNo));
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(InvoicePath));
             }
-            if ((DCNoDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((System.DateTime)(DCNoDate.Value));
-            }
-            else {
+            if ((OrderNo == null)) {
                 this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((OrderDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((System.DateTime)(OrderDate.Value));
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(OrderNo));
+            }
+            if ((DCNoDate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((System.DateTime)(DCNoDate.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            if ((GSTIN == null)) {
-                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
+            if ((OrderDate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[16].Value = ((System.DateTime)(OrderDate.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(GSTIN));
+                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            if ((StateCode == null)) {
+            if ((GSTIN == null)) {
                 this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(StateCode));
+                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(GSTIN));
             }
-            if ((DCNo == null)) {
+            if ((StateCode == null)) {
                 this.Adapter.InsertCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(DCNo));
+                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(StateCode));
+            }
+            if ((DCNo == null)) {
+                this.Adapter.InsertCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(DCNo));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4824,6 +4917,7 @@ ORDER BY Invoice.InvoiceID DESC";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
+                    int InvoiceNo, 
                     int ClientID, 
                     global::System.Nullable<global::System.DateTime> InvoiceDate, 
                     global::System.Nullable<double> Discount, 
@@ -4844,6 +4938,7 @@ ORDER BY Invoice.InvoiceID DESC";
                     string StateCode, 
                     string DCNo, 
                     int Original_InvoiceID, 
+                    int Original_InvoiceNo, 
                     int Original_ClientID, 
                     global::System.Nullable<global::System.DateTime> Original_InvoiceDate, 
                     global::System.Nullable<double> Original_Discount, 
@@ -4863,250 +4958,253 @@ ORDER BY Invoice.InvoiceID DESC";
                     string Original_GSTIN, 
                     string Original_StateCode, 
                     string Original_DCNo) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ClientID));
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(InvoiceNo));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(ClientID));
             if ((InvoiceDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(InvoiceDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((Discount.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((double)(Discount.Value));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(InvoiceDate.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((CGST.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((double)(CGST.Value));
+            if ((Discount.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((double)(Discount.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((SGST.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((double)(SGST.Value));
+            if ((CGST.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((double)(CGST.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((IGST.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((double)(IGST.Value));
+            if ((SGST.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((double)(SGST.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((Freight.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(Freight.Value));
+            if ((IGST.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((double)(IGST.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((LineAmount.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(LineAmount.Value));
+            if ((Freight.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(Freight.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((SubTotal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(SubTotal.Value));
+            if ((LineAmount.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(LineAmount.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((TotalAmount.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(TotalAmount.Value));
+            if ((SubTotal.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(SubTotal.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((TaxAmount.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(TaxAmount.Value));
+            if ((TotalAmount.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(TotalAmount.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(AddressFlag));
-            if ((InvoicePath == null)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            if ((TaxAmount.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(TaxAmount.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(InvoicePath));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((OrderNo == null)) {
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(AddressFlag));
+            if ((InvoicePath == null)) {
                 this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(OrderNo));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(InvoicePath));
             }
-            if ((DCNoDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(DCNoDate.Value));
-            }
-            else {
+            if ((OrderNo == null)) {
                 this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((OrderDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(OrderDate.Value));
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(OrderNo));
+            }
+            if ((DCNoDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(DCNoDate.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            if ((GSTIN == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            if ((OrderDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(OrderDate.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(GSTIN));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            if ((StateCode == null)) {
+            if ((GSTIN == null)) {
                 this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(StateCode));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(GSTIN));
             }
-            if ((DCNo == null)) {
+            if ((StateCode == null)) {
                 this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(DCNo));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(StateCode));
             }
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_InvoiceID));
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(Original_ClientID));
-            if ((Original_InvoiceDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((System.DateTime)(Original_InvoiceDate.Value));
+            if ((DCNo == null)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(DCNo));
+            }
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_InvoiceID));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(Original_InvoiceNo));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(Original_ClientID));
+            if ((Original_InvoiceDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((System.DateTime)(Original_InvoiceDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
             if ((Original_Discount.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((double)(Original_Discount.Value));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((double)(Original_Discount.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
             }
             if ((Original_CGST.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((double)(Original_CGST.Value));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((double)(Original_CGST.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
             }
             if ((Original_SGST.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((double)(Original_SGST.Value));
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((double)(Original_SGST.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
             }
             if ((Original_IGST.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((double)(Original_IGST.Value));
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((double)(Original_IGST.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[34].Value = global::System.DBNull.Value;
             }
             if ((Original_Freight.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((decimal)(Original_Freight.Value));
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((decimal)(Original_Freight.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[36].Value = global::System.DBNull.Value;
             }
             if ((Original_LineAmount.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[35].Value = ((decimal)(Original_LineAmount.Value));
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((decimal)(Original_LineAmount.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[35].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[38].Value = global::System.DBNull.Value;
             }
             if ((Original_SubTotal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[37].Value = ((decimal)(Original_SubTotal.Value));
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[40].Value = ((decimal)(Original_SubTotal.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[37].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[40].Value = global::System.DBNull.Value;
             }
             if ((Original_TotalAmount.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[39].Value = ((decimal)(Original_TotalAmount.Value));
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((decimal)(Original_TotalAmount.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[39].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[42].Value = global::System.DBNull.Value;
             }
             if ((Original_TaxAmount.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((decimal)(Original_TaxAmount.Value));
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((decimal)(Original_TaxAmount.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[41].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[44].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[43].Value = ((bool)(Original_AddressFlag));
+            this.Adapter.UpdateCommand.Parameters[45].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[46].Value = ((bool)(Original_AddressFlag));
             if ((Original_InvoicePath == null)) {
-                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[45].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[47].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[48].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[45].Value = ((string)(Original_InvoicePath));
+                this.Adapter.UpdateCommand.Parameters[47].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[48].Value = ((string)(Original_InvoicePath));
             }
             if ((Original_OrderNo == null)) {
-                this.Adapter.UpdateCommand.Parameters[46].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[47].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[50].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[46].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[47].Value = ((string)(Original_OrderNo));
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[50].Value = ((string)(Original_OrderNo));
             }
             if ((Original_DCNoDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[49].Value = ((System.DateTime)(Original_DCNoDate.Value));
+                this.Adapter.UpdateCommand.Parameters[51].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[52].Value = ((System.DateTime)(Original_DCNoDate.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[49].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[51].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[52].Value = global::System.DBNull.Value;
             }
             if ((Original_OrderDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[51].Value = ((System.DateTime)(Original_OrderDate.Value));
+                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[54].Value = ((System.DateTime)(Original_OrderDate.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[51].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[54].Value = global::System.DBNull.Value;
             }
             if ((Original_GSTIN == null)) {
-                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[53].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[56].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[53].Value = ((string)(Original_GSTIN));
+                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[56].Value = ((string)(Original_GSTIN));
             }
             if ((Original_StateCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[55].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[58].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[55].Value = ((string)(Original_StateCode));
+                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((string)(Original_StateCode));
             }
             if ((Original_DCNo == null)) {
-                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[57].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[60].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[57].Value = ((string)(Original_DCNo));
+                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((string)(Original_DCNo));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5127,29 +5225,151 @@ ORDER BY Invoice.InvoiceID DESC";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual object GetNextInvoiceID() {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[3];
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateInvoice(
+                    int InvoiceNo, 
+                    int ClientID, 
+                    global::System.Nullable<global::System.DateTime> InvoiceDate, 
+                    global::System.Nullable<decimal> Discount, 
+                    global::System.Nullable<decimal> CGST, 
+                    global::System.Nullable<decimal> SGST, 
+                    global::System.Nullable<decimal> IGST, 
+                    global::System.Nullable<decimal> Freight, 
+                    global::System.Nullable<decimal> LineAmount, 
+                    global::System.Nullable<decimal> SubTotal, 
+                    global::System.Nullable<decimal> TotalAmount, 
+                    global::System.Nullable<decimal> TaxAmount, 
+                    bool AddressFlag, 
+                    string InvoicePath, 
+                    string OrderNo, 
+                    global::System.Nullable<global::System.DateTime> DCNoDate, 
+                    global::System.Nullable<global::System.DateTime> OrderDate, 
+                    string GSTIN, 
+                    string StateCode, 
+                    string DCNo, 
+                    int Original_InvoiceID) {
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[4];
+            command.Parameters[0].Value = ((int)(InvoiceNo));
+            command.Parameters[1].Value = ((int)(ClientID));
+            if ((InvoiceDate.HasValue == true)) {
+                command.Parameters[2].Value = ((System.DateTime)(InvoiceDate.Value));
+            }
+            else {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Discount.HasValue == true)) {
+                command.Parameters[3].Value = ((decimal)(Discount.Value));
+            }
+            else {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((CGST.HasValue == true)) {
+                command.Parameters[4].Value = ((decimal)(CGST.Value));
+            }
+            else {
+                command.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((SGST.HasValue == true)) {
+                command.Parameters[5].Value = ((decimal)(SGST.Value));
+            }
+            else {
+                command.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((IGST.HasValue == true)) {
+                command.Parameters[6].Value = ((decimal)(IGST.Value));
+            }
+            else {
+                command.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Freight.HasValue == true)) {
+                command.Parameters[7].Value = ((decimal)(Freight.Value));
+            }
+            else {
+                command.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((LineAmount.HasValue == true)) {
+                command.Parameters[8].Value = ((decimal)(LineAmount.Value));
+            }
+            else {
+                command.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((SubTotal.HasValue == true)) {
+                command.Parameters[9].Value = ((decimal)(SubTotal.Value));
+            }
+            else {
+                command.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((TotalAmount.HasValue == true)) {
+                command.Parameters[10].Value = ((decimal)(TotalAmount.Value));
+            }
+            else {
+                command.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((TaxAmount.HasValue == true)) {
+                command.Parameters[11].Value = ((decimal)(TaxAmount.Value));
+            }
+            else {
+                command.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            command.Parameters[12].Value = ((bool)(AddressFlag));
+            if ((InvoicePath == null)) {
+                command.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[13].Value = ((string)(InvoicePath));
+            }
+            if ((OrderNo == null)) {
+                command.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[14].Value = ((string)(OrderNo));
+            }
+            if ((DCNoDate.HasValue == true)) {
+                command.Parameters[15].Value = ((System.DateTime)(DCNoDate.Value));
+            }
+            else {
+                command.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((OrderDate.HasValue == true)) {
+                command.Parameters[16].Value = ((System.DateTime)(OrderDate.Value));
+            }
+            else {
+                command.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            if ((GSTIN == null)) {
+                command.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[17].Value = ((string)(GSTIN));
+            }
+            if ((StateCode == null)) {
+                command.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[18].Value = ((string)(StateCode));
+            }
+            if ((DCNo == null)) {
+                command.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[19].Value = ((string)(DCNo));
+            }
+            command.Parameters[20].Value = ((int)(Original_InvoiceID));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            object returnValue;
+            int returnValue;
             try {
-                returnValue = command.ExecuteScalar();
+                returnValue = command.ExecuteNonQuery();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            if (((returnValue == null) 
-                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return null;
-            }
-            else {
-                return ((object)(returnValue));
-            }
+            return returnValue;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5157,7 +5377,7 @@ ORDER BY Invoice.InvoiceID DESC";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateInvoicePath(string InvoicePath, int Original_InvoiceID) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[4];
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[5];
             if ((InvoicePath == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -5375,7 +5595,7 @@ ORDER BY Invoice.InvoiceID DESC";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[2];
+            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[3];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        LineItemID, InvoiceID, SNo, Product, HSNCode, UnitPrice, Quantity\r\n" +
@@ -5383,10 +5603,15 @@ ORDER BY Invoice.InvoiceID DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT HSNCode, InvoiceID, LineItemID, Product, Quantity, SNo, UnitPrice FROM Lin" +
-                "eItem WHERE (InvoiceID = ?)";
+            this._commandCollection[1].CommandText = "DELETE FROM `LineItem` WHERE (`InvoiceID` = ?)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceID", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceID", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[2] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT HSNCode, InvoiceID, LineItemID, Product, Quantity, SNo, UnitPrice FROM Lin" +
+                "eItem WHERE (InvoiceID = ?)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InvoiceID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InvoiceID", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5418,7 +5643,7 @@ ORDER BY Invoice.InvoiceID DESC";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByInvoiceID(InvoicerDataSet.LineItemDataTable dataTable, global::System.Nullable<int> InvoiceID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((InvoiceID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(InvoiceID.Value));
             }
@@ -5437,7 +5662,7 @@ ORDER BY Invoice.InvoiceID DESC";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual InvoicerDataSet.LineItemDataTable GetDataByID(global::System.Nullable<int> InvoiceID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((InvoiceID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(InvoiceID.Value));
             }
@@ -5709,6 +5934,35 @@ ORDER BY Invoice.InvoiceID DESC";
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteLineItem(global::System.Nullable<int> InvoiceID) {
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[1];
+            if ((InvoiceID.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(InvoiceID.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     

@@ -79,15 +79,16 @@
             this.Label3 = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.dgInvoicer = new System.Windows.Forms.DataGridView();
-            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lineItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.invoicerDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.invoicerDataSet = new Invoicer.InvoicerDataSet();
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtInvoiceID = new System.Windows.Forms.TextBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.cmbClient = new System.Windows.Forms.ComboBox();
@@ -596,7 +597,6 @@
             // 
             this.txtInvoiceNo.Location = new System.Drawing.Point(103, 13);
             this.txtInvoiceNo.Name = "txtInvoiceNo";
-            this.txtInvoiceNo.ReadOnly = true;
             this.txtInvoiceNo.Size = new System.Drawing.Size(134, 20);
             this.txtInvoiceNo.TabIndex = 0;
             // 
@@ -649,7 +649,7 @@
             this.dgInvoicer.AutoGenerateColumns = false;
             this.dgInvoicer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgInvoicer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgInvoicer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {            
+            this.dgInvoicer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.invoiceIDDataGridViewTextBoxColumn,
             this.SNo,
             this.Product,
@@ -715,6 +715,7 @@
             // 
             // GroupBox2
             // 
+            this.GroupBox2.Controls.Add(this.txtInvoiceID);
             this.GroupBox2.Controls.Add(this.linkLabel2);
             this.GroupBox2.Controls.Add(this.linkLabel1);
             this.GroupBox2.Controls.Add(this.cmbClient);
@@ -735,6 +736,16 @@
             this.GroupBox2.TabIndex = 0;
             this.GroupBox2.TabStop = false;
             this.GroupBox2.Text = "Bill To";
+            // 
+            // txtInvoiceID
+            // 
+            this.txtInvoiceID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInvoiceID.Location = new System.Drawing.Point(323, 96);
+            this.txtInvoiceID.Name = "txtInvoiceID";
+            this.txtInvoiceID.ReadOnly = true;
+            this.txtInvoiceID.Size = new System.Drawing.Size(92, 20);
+            this.txtInvoiceID.TabIndex = 10;
+            this.txtInvoiceID.Visible = false;
             // 
             // linkLabel2
             // 
@@ -1065,5 +1076,6 @@
         internal System.Windows.Forms.Label label21;
         private System.Windows.Forms.ToolStripMenuItem mnuCreateNew;
         private System.Windows.Forms.DataGridViewTextBoxColumn invoiceIDDataGridViewTextBoxColumn;
+        internal System.Windows.Forms.TextBox txtInvoiceID;
     }
 }

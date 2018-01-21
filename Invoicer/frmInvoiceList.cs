@@ -132,18 +132,18 @@ namespace Invoicer
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int intInvoiceNo = 0;
+            int intInvoiceID = 0;
             try
             {
                 if (dgInvoice.SelectedRows.Count >= 1)
                 {
-                    intInvoiceNo = Convert.ToInt32(dgInvoice.SelectedRows[0].Cells["InvoiceID"].Value.ToString());
+                    intInvoiceID = Convert.ToInt32(dgInvoice.SelectedRows[0].Cells["InvoiceID"].Value.ToString());
                     //this.Owner.ShowDialog(this);
                     //frmInvoicer objInvoicer = new frmInvoicer(intInvoiceNo);
                     //objInvoicer.ShowDialog(this);
                     //this.Owner.Close();                   
                     frmInvoicer myParent = (frmInvoicer)this.Owner;
-                    myParent.DisplayData(intInvoiceNo);
+                    myParent.DisplayData(intInvoiceID);
                     this.Close();
                 }
             }
@@ -169,15 +169,15 @@ namespace Invoicer
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            int intInvoiceNo = 0;
+            int intInvoiceID = 0;
             string strClient = null;
             try
             {
                 if (dgInvoice.SelectedRows.Count >= 1 && dgInvoice.SelectedRows[0].Cells["InvoiceID"].Value != null)
                 {
-                    intInvoiceNo = Convert.ToInt32(dgInvoice.SelectedRows[0].Cells["InvoiceID"].Value.ToString());
-                    //strClient = dgInvoice.SelectedRows[0].Cells[""].ToString();
-                    ReportHelper.GeneratePDFReport(intInvoiceNo, strClient);
+                    intInvoiceID = Convert.ToInt32(dgInvoice.SelectedRows[0].Cells["InvoiceID"].Value.ToString());
+                    strClient = dgInvoice.SelectedRows[0].Cells["ClientName"].ToString();
+                    ReportHelper.GeneratePDFReport(intInvoiceID, strClient);
                 }
             }
             catch (Exception ex)
