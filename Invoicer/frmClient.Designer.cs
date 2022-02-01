@@ -30,6 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgInvoice = new System.Windows.Forms.DataGridView();
+            this.ctxtClient = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.invoicerDataSet = new Invoicer.InvoicerDataSet();
+            this.clientTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ClientTableAdapter();
             this.clientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,17 +46,10 @@
             this.dCNODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vendorCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tINNODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.invoicerDataSet = new Invoicer.InvoicerDataSet();
-            this.clientTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ClientTableAdapter();
-            this.ctxtClient = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoice)).BeginInit();
+            this.ctxtClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).BeginInit();
-            this.ctxtClient.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgInvoice
@@ -79,6 +79,50 @@
             this.dgInvoice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgInvoice.Size = new System.Drawing.Size(945, 415);
             this.dgInvoice.TabIndex = 0;
+            // 
+            // ctxtClient
+            // 
+            this.ctxtClient.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.closeToolStripMenuItem});
+            this.ctxtClient.Name = "ctxtClient";
+            this.ctxtClient.Size = new System.Drawing.Size(104, 70);
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.newToolStripMenuItem.Text = "&New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.editToolStripMenuItem.Text = "&Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.closeToolStripMenuItem.Text = "&Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // clientBindingSource
+            // 
+            this.clientBindingSource.DataMember = "Client";
+            this.clientBindingSource.DataSource = this.invoicerDataSet;
+            // 
+            // invoicerDataSet
+            // 
+            this.invoicerDataSet.DataSetName = "InvoicerDataSet";
+            this.invoicerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // clientTableAdapter
+            // 
+            this.clientTableAdapter.ClearBeforeFill = true;
             // 
             // clientIDDataGridViewTextBoxColumn
             // 
@@ -139,53 +183,9 @@
             // tINNODataGridViewTextBoxColumn
             // 
             this.tINNODataGridViewTextBoxColumn.DataPropertyName = "TINNO";
-            this.tINNODataGridViewTextBoxColumn.HeaderText = "TINNO";
+            this.tINNODataGridViewTextBoxColumn.HeaderText = "PAN";
             this.tINNODataGridViewTextBoxColumn.Name = "tINNODataGridViewTextBoxColumn";
             this.tINNODataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // clientBindingSource
-            // 
-            this.clientBindingSource.DataMember = "Client";
-            this.clientBindingSource.DataSource = this.invoicerDataSet;
-            // 
-            // invoicerDataSet
-            // 
-            this.invoicerDataSet.DataSetName = "InvoicerDataSet";
-            this.invoicerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // clientTableAdapter
-            // 
-            this.clientTableAdapter.ClearBeforeFill = true;
-            // 
-            // ctxtClient
-            // 
-            this.ctxtClient.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.closeToolStripMenuItem});
-            this.ctxtClient.Name = "ctxtClient";
-            this.ctxtClient.Size = new System.Drawing.Size(104, 70);
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.newToolStripMenuItem.Text = "&New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "&Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.closeToolStripMenuItem.Text = "&Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // frmClient
             // 
@@ -199,9 +199,9 @@
             this.Text = "Client";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoice)).EndInit();
+            this.ctxtClient.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicerDataSet)).EndInit();
-            this.ctxtClient.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -212,6 +212,11 @@
         private InvoicerDataSet invoicerDataSet;       
         private System.Windows.Forms.BindingSource clientBindingSource;
         private InvoicerDataSetTableAdapters.ClientTableAdapter clientTableAdapter;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn orderNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ContextMenuStrip ctxtClient;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn clientIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clientNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
@@ -221,11 +226,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dCNODataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vendorCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tINNODataGridViewTextBoxColumn;
-        //private System.Windows.Forms.DataGridViewTextBoxColumn orderNoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ContextMenuStrip ctxtClient;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
     }
 }
 

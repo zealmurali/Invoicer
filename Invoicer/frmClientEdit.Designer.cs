@@ -138,7 +138,7 @@
             this.Label14.Name = "Label14";
             this.Label14.Size = new System.Drawing.Size(101, 13);
             this.Label14.TabIndex = 53;
-            this.Label14.Text = "TIN No. ";
+            this.Label14.Text = "PAN No. ";
             // 
             // txtVendorCode
             // 

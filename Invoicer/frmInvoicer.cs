@@ -40,11 +40,11 @@ namespace Invoicer
                 {
                     for (intRowCount = 0; intRowCount <= intTotalRowCount; intRowCount++)
                     {
-                        if ((dgInvoicer.Rows[intRowCount].Cells[3].Value != null) && (dgInvoicer.Rows[intRowCount].Cells[4].Value != null))
+                        if ((dgInvoicer.Rows[intRowCount].Cells[4].Value != null) && (dgInvoicer.Rows[intRowCount].Cells[5].Value != null))
                         {
-                            if (!(string.IsNullOrEmpty(dgInvoicer.Rows[intRowCount].Cells[3].Value.ToString())) && !(string.IsNullOrEmpty(dgInvoicer.Rows[intRowCount].Cells[4].Value.ToString())))
+                            if (!(string.IsNullOrEmpty(dgInvoicer.Rows[intRowCount].Cells[4].Value.ToString())) && !(string.IsNullOrEmpty(dgInvoicer.Rows[intRowCount].Cells[5].Value.ToString())))
                             {
-                                TotalAmount = TotalAmount + ((Convert.ToDouble(dgInvoicer.Rows[intRowCount].Cells[3].Value)) * (Convert.ToDouble(dgInvoicer.Rows[intRowCount].Cells[4].Value)));
+                                TotalAmount = TotalAmount + ((Convert.ToDouble(dgInvoicer.Rows[intRowCount].Cells[4].Value)) * (Convert.ToDouble(dgInvoicer.Rows[intRowCount].Cells[5].Value)));
                             }
                         }
                     }
@@ -199,7 +199,7 @@ namespace Invoicer
                     {
                         foreach (DataRow item in dtLineItem.Rows)
                         {
-                            objData.Insert(intInvoiceID, Convert.ToInt32(item["SNo"]), item["Product"].ToString(), HSNCode, Convert.ToDecimal(item["UnitPrice"].ToString()), Convert.ToInt16(item["Quantity"].ToString()));
+                            objData.Insert(intInvoiceID, Convert.ToInt32(item["SNo"]), item["Product"].ToString(), item["HSNCode"].ToString(), Convert.ToDecimal(item["UnitPrice"].ToString()), Convert.ToInt16(item["Quantity"].ToString()));
                         }
                     }
                     else
@@ -564,6 +564,11 @@ namespace Invoicer
             {
                 MessageBox.Show(exclocal.Message);
             }
+        }
+
+        private void dgInvoicer_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            //this.dgInvoicer.Rows[e.RowIndex].Cells[4].Value = "123";
         }
     }
 }
