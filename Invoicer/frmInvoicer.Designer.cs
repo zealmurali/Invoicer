@@ -79,6 +79,12 @@
             this.Label3 = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.dgInvoicer = new System.Windows.Forms.DataGridView();
+            this.invoiceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HSNCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lineItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.invoicerDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.invoicerDataSet = new Invoicer.InvoicerDataSet();
@@ -108,12 +114,8 @@
             this.mnuCreateNew = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productsTableAdapter = new Invoicer.InvoicerDataSetTableAdapters.ProductsTableAdapter();
-            this.invoiceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HSNCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtFinYr = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.Panel2.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoicer)).BeginInit();
@@ -471,6 +473,7 @@
             // 
             // GroupBox1
             // 
+            this.GroupBox1.Controls.Add(this.txtFinYr);
             this.GroupBox1.Controls.Add(this.txtCStateCode);
             this.GroupBox1.Controls.Add(this.label18);
             this.GroupBox1.Controls.Add(this.txtCGSTIN);
@@ -487,6 +490,7 @@
             this.GroupBox1.Controls.Add(this.Label4);
             this.GroupBox1.Controls.Add(this.lblDCNo);
             this.GroupBox1.Controls.Add(this.Label3);
+            this.GroupBox1.Controls.Add(this.label22);
             this.GroupBox1.Location = new System.Drawing.Point(438, 5);
             this.GroupBox1.Name = "GroupBox1";
             this.GroupBox1.Size = new System.Drawing.Size(428, 134);
@@ -586,7 +590,7 @@
             // 
             this.txtVendorCode.Location = new System.Drawing.Point(103, 60);
             this.txtVendorCode.Name = "txtVendorCode";
-            this.txtVendorCode.Size = new System.Drawing.Size(316, 20);
+            this.txtVendorCode.Size = new System.Drawing.Size(134, 20);
             this.txtVendorCode.TabIndex = 4;
             // 
             // txtDCNo
@@ -665,6 +669,50 @@
             this.dgInvoicer.Size = new System.Drawing.Size(857, 207);
             this.dgInvoicer.TabIndex = 4;
             this.dgInvoicer.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgInvoicer_RowsAdded);
+            // 
+            // invoiceIDDataGridViewTextBoxColumn
+            // 
+            this.invoiceIDDataGridViewTextBoxColumn.DataPropertyName = "InvoiceID";
+            this.invoiceIDDataGridViewTextBoxColumn.FillWeight = 1F;
+            this.invoiceIDDataGridViewTextBoxColumn.HeaderText = "InvoiceID";
+            this.invoiceIDDataGridViewTextBoxColumn.Name = "invoiceIDDataGridViewTextBoxColumn";
+            this.invoiceIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // SNo
+            // 
+            this.SNo.DataPropertyName = "SNo";
+            this.SNo.FillWeight = 3F;
+            this.SNo.HeaderText = "S.No";
+            this.SNo.Name = "SNo";
+            // 
+            // Product
+            // 
+            this.Product.DataPropertyName = "Product";
+            this.Product.FillWeight = 40F;
+            this.Product.HeaderText = "PARTICULARS";
+            this.Product.Name = "Product";
+            this.Product.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // HSNCode
+            // 
+            this.HSNCode.DataPropertyName = "HSNCode";
+            this.HSNCode.FillWeight = 7.6F;
+            this.HSNCode.HeaderText = "HSN Code";
+            this.HSNCode.Name = "HSNCode";
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.FillWeight = 7.614212F;
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            // 
+            // UnitPrice
+            // 
+            this.UnitPrice.DataPropertyName = "UnitPrice";
+            this.UnitPrice.FillWeight = 7.614212F;
+            this.UnitPrice.HeaderText = "Rate";
+            this.UnitPrice.Name = "UnitPrice";
             // 
             // lineItemBindingSource
             // 
@@ -926,49 +974,22 @@
             // 
             this.productsTableAdapter.ClearBeforeFill = true;
             // 
-            // invoiceIDDataGridViewTextBoxColumn
+            // txtFinYr
             // 
-            this.invoiceIDDataGridViewTextBoxColumn.DataPropertyName = "InvoiceID";
-            this.invoiceIDDataGridViewTextBoxColumn.FillWeight = 1F;
-            this.invoiceIDDataGridViewTextBoxColumn.HeaderText = "InvoiceID";
-            this.invoiceIDDataGridViewTextBoxColumn.Name = "invoiceIDDataGridViewTextBoxColumn";
-            this.invoiceIDDataGridViewTextBoxColumn.Visible = false;
+            this.txtFinYr.Location = new System.Drawing.Point(285, 60);
+            this.txtFinYr.Name = "txtFinYr";
+            this.txtFinYr.Size = new System.Drawing.Size(134, 20);
+            this.txtFinYr.TabIndex = 15;
             // 
-            // SNo
+            // label22
             // 
-            this.SNo.DataPropertyName = "SNo";
-            this.SNo.FillWeight = 3F;
-            this.SNo.HeaderText = "S.No";
-            this.SNo.Name = "SNo";
-            // 
-            // Product
-            // 
-            this.Product.DataPropertyName = "Product";
-            this.Product.FillWeight = 40F;
-            this.Product.HeaderText = "PARTICULARS";
-            this.Product.Name = "Product";
-            this.Product.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // HSNCode
-            // 
-            this.HSNCode.DataPropertyName = "HSNCode";
-            this.HSNCode.FillWeight = 7.6F;
-            this.HSNCode.HeaderText = "HSN Code";
-            this.HSNCode.Name = "HSNCode";
-            // 
-            // Quantity
-            // 
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.FillWeight = 7.614212F;
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            // 
-            // UnitPrice
-            // 
-            this.UnitPrice.DataPropertyName = "UnitPrice";
-            this.UnitPrice.FillWeight = 7.614212F;
-            this.UnitPrice.HeaderText = "Rate";
-            this.UnitPrice.Name = "UnitPrice";
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.DimGray;
+            this.label22.Location = new System.Drawing.Point(243, 63);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(52, 13);
+            this.label22.TabIndex = 16;
+            this.label22.Text = "Fin.Yr";
             // 
             // frmInvoicer
             // 
@@ -1090,5 +1111,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HSNCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
+        internal System.Windows.Forms.TextBox txtFinYr;
+        internal System.Windows.Forms.Label label22;
     }
 }

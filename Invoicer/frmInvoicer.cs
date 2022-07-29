@@ -184,6 +184,8 @@ namespace Invoicer
                 string StateCode = this.txtStateCode.Text != "" ? this.txtStateCode.Text : null;
                 string DCNo = this.txtDCNo.Text != "" ? this.txtDCNo.Text : null;
 
+                string strFinYear = this.txtFinYr.Text != "" ? this.txtFinYr.Text : null;
+
                 InvoicerDataSetTableAdapters.LineItemTableAdapter objData = new InvoicerDataSetTableAdapters.LineItemTableAdapter();
                 DataTable dtLineItem = null;
                 if (blnEditFlag)
@@ -211,14 +213,14 @@ namespace Invoicer
                 if (blnEditFlag)
                 {
                     objInvoice.UpdateInvoice(intInvoiceNo,intClientID, InvoiceDate, Decimal.Parse(Discount.ToString()), Decimal.Parse(CGST.ToString()), Decimal.Parse(SGST.ToString()), Decimal.Parse(IGST.ToString()), 0,
-                    LineAmount, SubTotal, TotalAmount, TaxAmount, AddressFlag, null, OrderNo, DCNoDate,
+                    LineAmount, SubTotal, TotalAmount, TaxAmount, AddressFlag, strFinYear, OrderNo, DCNoDate,
                     OrderDate, GSTIN, StateCode, DCNo, intInvoiceID);
                     return intInvoiceID;
                 }
                 else
                 {
                     return objInvoice.Insert(intInvoiceNo,intClientID, InvoiceDate, Discount, CGST, SGST, IGST, 0,
-                    LineAmount, SubTotal, TotalAmount, TaxAmount, AddressFlag, null, OrderNo, DCNoDate,
+                    LineAmount, SubTotal, TotalAmount, TaxAmount, AddressFlag, strFinYear, OrderNo, DCNoDate,
                     OrderDate, GSTIN, StateCode, DCNo);
                 }
             }
@@ -277,10 +279,17 @@ namespace Invoicer
                         txtInvoiceID.Text = "1";
                     }
                 }
+                if (this.dtInvoiceDate.Text != "")
+                {
+                    dtInvoiceDate.CustomFormat = "MM/dd/yyyy";
+                    DateTime InvoiceDate = Convert.ToDateTime(dtInvoiceDate.Text);
+                    dtInvoiceDate.CustomFormat = "dd/MM/yyyy";
+                    txtFinYr.Text = GetFinancialYear(InvoiceDate);
+                }
             }
             catch (Exception excLocal)
             {
-                MessageBox.Show(excLocal.Message);
+                MessageBox.Show(excLocal.StackTrace + excLocal.InnerException + excLocal.Message);
             }
         }
 
@@ -569,6 +578,26 @@ namespace Invoicer
         private void dgInvoicer_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             //this.dgInvoicer.Rows[e.RowIndex].Cells[4].Value = "123";
+        }
+
+        public string GetFinancialYear(DateTime curDate)
+        {
+            int CurrentYear = curDate.Year;
+            int PreviousYear = (curDate.Year - 1);
+            int NextYear = (curDate.Year + 1);
+            string PreYear = PreviousYear.ToString();
+            string NexYear = NextYear.ToString();
+            string CurYear = CurrentYear.ToString();
+            string FinYear = string.Empty;
+            if (curDate.Month > 3)
+            {
+                FinYear = CurYear + "-" + NexYear;
+            }
+            else
+            {
+                FinYear = PreYear + "-" + CurYear;
+            }
+            return FinYear;
         }
     }
 }
