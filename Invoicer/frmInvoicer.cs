@@ -40,11 +40,11 @@ namespace Invoicer
                 {
                     for (intRowCount = 0; intRowCount <= intTotalRowCount; intRowCount++)
                     {
-                        if ((dgInvoicer.Rows[intRowCount].Cells[4].Value != null) && (dgInvoicer.Rows[intRowCount].Cells[5].Value != null))
+                        if ((dgInvoicer.Rows[intRowCount].Cells["Quantity"].Value != null) && (dgInvoicer.Rows[intRowCount].Cells["UnitPrice"].Value != null))
                         {
-                            if (!(string.IsNullOrEmpty(dgInvoicer.Rows[intRowCount].Cells[4].Value.ToString())) && !(string.IsNullOrEmpty(dgInvoicer.Rows[intRowCount].Cells[5].Value.ToString())))
+                            if (!(string.IsNullOrEmpty(dgInvoicer.Rows[intRowCount].Cells["Quantity"].Value.ToString())) && !(string.IsNullOrEmpty(dgInvoicer.Rows[intRowCount].Cells["UnitPrice"].Value.ToString())))
                             {
-                                TotalAmount = TotalAmount + ((Convert.ToDouble(dgInvoicer.Rows[intRowCount].Cells[4].Value)) * (Convert.ToDouble(dgInvoicer.Rows[intRowCount].Cells[5].Value)));
+                                TotalAmount = TotalAmount + ((Convert.ToDouble(dgInvoicer.Rows[intRowCount].Cells["Quantity"].Value)) * (Convert.ToDouble(dgInvoicer.Rows[intRowCount].Cells["UnitPrice"].Value)));
                             }
                         }
                     }
@@ -201,7 +201,7 @@ namespace Invoicer
                     {
                         foreach (DataRow item in dtLineItem.Rows)
                         {
-                            objData.Insert(intInvoiceID, Convert.ToInt32(item["SNo"]), item["Product"].ToString(), item["HSNCode"].ToString(), Convert.ToDecimal(item["UnitPrice"].ToString()), Convert.ToInt16(item["Quantity"].ToString()));
+                            objData.Insert(intInvoiceID, Convert.ToInt32(item["SNo"]), item["Product"].ToString(), item["HSNCode"].ToString(), Convert.ToDecimal(item["UnitPrice"].ToString()), Convert.ToInt16(item["Quantity"].ToString()), item["Unit"].ToString());
                         }
                     }
                     else
@@ -266,11 +266,11 @@ namespace Invoicer
                 else
                 {
                     InvoicerDataSetTableAdapters.InvoiceTableAdapter objInvoice = new InvoicerDataSetTableAdapters.InvoiceTableAdapter();
-                    DataTable dtNextInvoiceData = objInvoice.GetNextInvoiceID();
+                    DataTable dtNextInvoiceData = objInvoice.GetNextInvoiceNo();
                     if (dtNextInvoiceData != null)
                     {
-                        txtInvoiceNo.Text = dtNextInvoiceData.Rows[0]["InvoiceNo"].ToString().PadLeft(3, '0');
-                        txtInvoiceID.Text = dtNextInvoiceData.Rows[0]["InvoiceID"].ToString();
+                        txtInvoiceNo.Text = dtNextInvoiceData.Rows[0]["InvoiceNo"] != null ? dtNextInvoiceData.Rows[0]["InvoiceNo"].ToString().PadLeft(3, '0'): "1";
+                        txtInvoiceID.Text = dtNextInvoiceData.Rows[0]["InvoiceID"] != null ? dtNextInvoiceData.Rows[0]["InvoiceID"].ToString() : "1";
                         DisplayData(0);
                     }
                     else
@@ -577,7 +577,7 @@ namespace Invoicer
 
         private void dgInvoicer_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            //this.dgInvoicer.Rows[e.RowIndex].Cells[4].Value = "123";
+            //this.dgInvoicer.Rows[e.RowIndex].Cells["Quantity"].Value = "123";
         }
 
         public string GetFinancialYear(DateTime curDate)
